@@ -18,6 +18,7 @@ namespace 仓库管理系统
             using (var conn = new SqlConnection(conStr))
             {
                 MessageBox.Show("sql链接成功");
+                //xk-pc推送测试
             }
         }
     }
