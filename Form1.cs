@@ -19,7 +19,7 @@ namespace 仓库管理系统
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            Login.Test();
         }
     }
 }
