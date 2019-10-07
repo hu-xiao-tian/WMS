@@ -12,6 +12,7 @@ namespace 仓库管理系统
 {
     public partial class LoginForm : Form
     {
+
         public LoginForm()
         {
             InitializeComponent();
@@ -23,7 +24,11 @@ namespace 仓库管理系统
             
             user.UserName = userNameTxt.Text;
             user.UserPassword = Encryption.GetMd5Str(userPasswordTxt.Text);
+            user.UserEmail = userNameTxt.Text;
             if (Login.LoginCheck(user) >0)
+            {
+                MessageBox.Show("登录成功");
+            }else if (Login.EmailLoginCheck(user) > 0)
             {
                 MessageBox.Show("登录成功");
             }
@@ -37,6 +42,12 @@ namespace 仓库管理系统
         {
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
+        }
+
+        private void losePWLab_Click(object sender, EventArgs e)
+        {
+            FindPasswordForm findPasswordForm = new FindPasswordForm();
+            findPasswordForm.Show();
         }
     }
 }

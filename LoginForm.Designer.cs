@@ -34,6 +34,7 @@
             this.registerBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.losePWLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // loginBtn
@@ -88,11 +89,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "密码:";
             // 
+            // losePWLab
+            // 
+            this.losePWLab.AutoSize = true;
+            this.losePWLab.Location = new System.Drawing.Point(325, 215);
+            this.losePWLab.Name = "losePWLab";
+            this.losePWLab.Size = new System.Drawing.Size(65, 12);
+            this.losePWLab.TabIndex = 5;
+            this.losePWLab.Text = "忘记密码？";
+            this.losePWLab.Click += new System.EventHandler(this.losePWLab_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 352);
+            this.Controls.Add(this.losePWLab);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.registerBtn);
@@ -114,6 +126,7 @@
         private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label losePWLab;
     }
 }
 
