@@ -25,7 +25,11 @@ namespace 仓库管理系统
             user.UserName = userNameTxt.Text;
             user.UserPassword = Encryption.GetMd5Str(userPasswordTxt.Text);
             user.UserEmail = userNameTxt.Text;
-            if (Login.LoginCheck(user) >0)
+            if(string.IsNullOrEmpty(userNameTxt.Text)
+                || string.IsNullOrEmpty(userPasswordTxt.Text)){
+                MessageBox.Show("用户名或密码不可为空");
+            }
+            else if (Login.LoginCheck(user) >0)
             {
                 MessageBox.Show("登录成功");
             }
