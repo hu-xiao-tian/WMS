@@ -40,15 +40,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.userNicknameTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.codeLab = new System.Windows.Forms.Label();
             this.userPWTxt = new System.Windows.Forms.TextBox();
+            this.userTelTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.userTelLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // emailTxt
             // 
-            this.emailTxt.Location = new System.Drawing.Point(159, 210);
+            this.emailTxt.Location = new System.Drawing.Point(159, 243);
             this.emailTxt.MaxLength = 50;
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(182, 21);
@@ -58,7 +61,7 @@
             // 
             // emailCodeTxt
             // 
-            this.emailCodeTxt.Location = new System.Drawing.Point(159, 270);
+            this.emailCodeTxt.Location = new System.Drawing.Point(159, 303);
             this.emailCodeTxt.MaxLength = 6;
             this.emailCodeTxt.Name = "emailCodeTxt";
             this.emailCodeTxt.Size = new System.Drawing.Size(100, 21);
@@ -66,7 +69,7 @@
             // 
             // sendEmailCode
             // 
-            this.sendEmailCode.Location = new System.Drawing.Point(266, 267);
+            this.sendEmailCode.Location = new System.Drawing.Point(266, 300);
             this.sendEmailCode.Name = "sendEmailCode";
             this.sendEmailCode.Size = new System.Drawing.Size(75, 23);
             this.sendEmailCode.TabIndex = 2;
@@ -76,7 +79,7 @@
             // 
             // registerBtn
             // 
-            this.registerBtn.Location = new System.Drawing.Point(159, 336);
+            this.registerBtn.Location = new System.Drawing.Point(159, 369);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(75, 23);
             this.registerBtn.TabIndex = 3;
@@ -87,7 +90,7 @@
             // emailLab
             // 
             this.emailLab.AutoSize = true;
-            this.emailLab.Location = new System.Drawing.Point(157, 246);
+            this.emailLab.Location = new System.Drawing.Point(157, 279);
             this.emailLab.Name = "emailLab";
             this.emailLab.Size = new System.Drawing.Size(41, 12);
             this.emailLab.TabIndex = 4;
@@ -140,7 +143,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 219);
+            this.label6.Location = new System.Drawing.Point(88, 252);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 6;
@@ -149,18 +152,19 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(88, 279);
+            this.label7.Location = new System.Drawing.Point(88, 312);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 6;
             this.label7.Text = "Code";
             // 
-            // textBox3
+            // userNicknameTxt
             // 
-            this.textBox3.Location = new System.Drawing.Point(159, 153);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(182, 21);
-            this.textBox3.TabIndex = 7;
+            this.userNicknameTxt.Location = new System.Drawing.Point(159, 153);
+            this.userNicknameTxt.Name = "userNicknameTxt";
+            this.userNicknameTxt.Size = new System.Drawing.Size(182, 21);
+            this.userNicknameTxt.TabIndex = 7;
+            this.userNicknameTxt.TextChanged += new System.EventHandler(this.userNicknameTxt_TextChanged);
             // 
             // label8
             // 
@@ -174,7 +178,7 @@
             // codeLab
             // 
             this.codeLab.AutoSize = true;
-            this.codeLab.Location = new System.Drawing.Point(157, 307);
+            this.codeLab.Location = new System.Drawing.Point(157, 340);
             this.codeLab.Name = "codeLab";
             this.codeLab.Size = new System.Drawing.Size(41, 12);
             this.codeLab.TabIndex = 4;
@@ -188,15 +192,45 @@
             this.userPWTxt.TabIndex = 8;
             this.userPWTxt.Leave += new System.EventHandler(this.userPWTxt_Leave);
             // 
+            // userTelTxt
+            // 
+            this.userTelTxt.Location = new System.Drawing.Point(159, 197);
+            this.userTelTxt.MaxLength = 11;
+            this.userTelTxt.Name = "userTelTxt";
+            this.userTelTxt.Size = new System.Drawing.Size(182, 21);
+            this.userTelTxt.TabIndex = 10;
+            this.userTelTxt.TextChanged += new System.EventHandler(this.userTelTxt_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 206);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "电话：";
+            // 
+            // userTelLab
+            // 
+            this.userTelLab.AutoSize = true;
+            this.userTelLab.Location = new System.Drawing.Point(157, 221);
+            this.userTelLab.Name = "userTelLab";
+            this.userTelLab.Size = new System.Drawing.Size(41, 12);
+            this.userTelLab.TabIndex = 6;
+            this.userTelLab.Text = "label2";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 420);
+            this.Controls.Add(this.userTelTxt);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.userPWTxt);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.userNicknameTxt);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.userTelLab);
             this.Controls.Add(this.userPWLab);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label8);
@@ -230,9 +264,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox userNicknameTxt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label codeLab;
         private System.Windows.Forms.TextBox userPWTxt;
+        private System.Windows.Forms.TextBox userTelTxt;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label userTelLab;
     }
 }

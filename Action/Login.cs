@@ -15,31 +15,18 @@ namespace 仓库管理系统
     class Login
     {
         public static string conStr = ConfigurationManager.ConnectionStrings["WMSDBconStr"].ConnectionString;
-        public static void Test()
-        {
-            using (var conn = new SqlConnection(conStr))
-            {
-                MessageBox.Show("sql链接成功");
-                //xk-pc推送测试
-            }
-        }
+
         public static int LoginCheck(LoginUser user)
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = "select count(*) from LoginUser Where UserName=@UserName and UserPassword=@UserPassword";
+                string sql = @"select count(*) from LoginUser 
+                Where (UserName=@UserName and UserPassword=@UserPassword)
+                Or  (UserEmail=@UserEmail and UserPassword=@UserPassword)";
                 return conn.ExecuteScalar<int>(sql,user);
             }
         }
 
-        public static int EmailLoginCheck(LoginUser user)
-        {
-            using (var conn = new SqlConnection(conStr))
-            {
-                string sql = "select count(*) from LoginUser Where UserEmail=@UserEmail and UserPassword=@UserPassword";
-                return conn.ExecuteScalar<int>(sql, user);
-            }
-        }
         public static int UserNameCheck(string userName)
         {
             using (var conn = new SqlConnection(conStr))
@@ -59,6 +46,11 @@ namespace 仓库管理系统
             else if (string.IsNullOrEmpty(user.UserPassword))
             {
                 MessageBox.Show("请更正密码");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(user.UserTel))
+            {
+                MessageBox.Show("请更正电话");
                 return false;
             }
             else
@@ -100,7 +92,7 @@ namespace 仓库管理系统
             {
                 using (var conn = new SqlConnection(conStr))
                 {
-                    string sql = "insert into LoginUser(UserName, UserPassword, UserEmail,UserNickname) Values(@UserName, @UserPassword, @UserEmail,@UserNickname)";
+                    string sql = "insert into LoginUser(UserName, UserPassword, UserEmail,UserNickname,UserTel) Values(@UserName, @UserPassword, @UserEmail,@UserNickname,@UserTel)";
                     conn.Execute(sql,user);
                     return true;
                 }

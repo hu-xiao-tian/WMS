@@ -24,7 +24,7 @@ namespace 仓库管理系统
         }
         public static bool TelCheck(string tel)
         {
-            Regex regex = new Regex(@"^(\d{3.4}-)\d{7,8}$");
+            Regex regex = new Regex("^1[34578]\\d{9}$");
             if (regex.IsMatch(tel))
             {
                 return true;

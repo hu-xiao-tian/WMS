@@ -28,9 +28,6 @@ namespace 仓库管理系统
             if (Login.LoginCheck(user) >0)
             {
                 MessageBox.Show("登录成功");
-            }else if (Login.EmailLoginCheck(user) > 0)
-            {
-                MessageBox.Show("登录成功");
             }
             else
             {

@@ -124,5 +124,25 @@ namespace 仓库管理系统
                 user.UserPassword = "";
             }
         }
+
+        private void userNicknameTxt_TextChanged(object sender, EventArgs e)
+        {
+            user.UserNickname = userNicknameTxt.Text;
+        }
+
+        private void userTelTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (RegexCheck.TelCheck(userTelTxt.Text.Trim()))
+            {
+                user.UserTel = userTelTxt.Text.Trim();
+                userTelLab.Text = "";
+            }
+            else
+            {
+                user.UserTel = "";
+                userTelLab.Text = "电话号码格式错误";
+
+            }
+        }
     }
 }

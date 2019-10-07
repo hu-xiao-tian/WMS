@@ -13,6 +13,7 @@ namespace 仓库管理系统
         public string UserPassword { get; set; }
         public string UserEmail { get; set; }
         public string UserNickname { get; set; }
+        public string UserTel { get; set; }
         public string UserSignature { get; set; }
         public string UserPortraitUrl { get; set; }
         public int UserLV { get; set; }

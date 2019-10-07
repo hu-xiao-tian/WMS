@@ -17,6 +17,9 @@ CONSTRAINT LoginUser_no_unique_constraint UNIQUE (UserName)
 ALTER TABLE LoginUser
 ADD UserLV int 
 
+ALTER TABLE LoginUser
+ADD UserTel nvarchar(11) 
+
 alter table LoginUser alter column UserPassword nvarchar(50);
 
 
