@@ -28,22 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emailTxt = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.sendEmailCode = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // emailTxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(159, 106);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 21);
-            this.textBox1.TabIndex = 0;
+            this.emailTxt.Location = new System.Drawing.Point(159, 106);
+            this.emailTxt.MaxLength = 50;
+            this.emailTxt.Name = "emailTxt";
+            this.emailTxt.Size = new System.Drawing.Size(182, 21);
+            this.emailTxt.TabIndex = 0;
+            this.emailTxt.Enter += new System.EventHandler(this.emailTxt_Enter);
+            this.emailTxt.Leave += new System.EventHandler(this.emailTxt_Leave);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(159, 145);
+            this.textBox2.MaxLength = 6;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 21);
             this.textBox2.TabIndex = 1;
@@ -68,15 +73,25 @@
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(362, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.registerBtn);
             this.Controls.Add(this.sendEmailCode);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emailTxt);
             this.Name = "RegisterForm";
             this.Text = "registerForm";
             this.ResumeLayout(false);
@@ -86,9 +101,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emailTxt;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button sendEmailCode;
         private System.Windows.Forms.Button registerBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

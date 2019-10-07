@@ -37,7 +37,6 @@ namespace 仓库管理系统
         {
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
-
         }
     }
 }
