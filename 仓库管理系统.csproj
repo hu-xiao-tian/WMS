@@ -72,32 +72,32 @@
     <Compile Include="Action\RegexCheck.cs" />
     <Compile Include="Action\Email.cs" />
     <Compile Include="Action\Encryption.cs" />
-    <Compile Include="FindPasswordForm.cs">
+    <Compile Include="LoginForm\FindPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindPasswordForm.Designer.cs">
+    <Compile Include="LoginForm\FindPasswordForm.Designer.cs">
       <DependentUpon>FindPasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="LoginForm\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="LoginForm\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Action\Login.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterForm.cs">
+    <Compile Include="LoginForm\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterForm.Designer.cs">
+    <Compile Include="LoginForm\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Template\LoginUser.cs" />
-    <EmbeddedResource Include="FindPasswordForm.resx">
+    <EmbeddedResource Include="LoginForm\FindPasswordForm.resx">
       <DependentUpon>FindPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -109,7 +109,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="registerForm.resx">
+    <EmbeddedResource Include="LoginForm\registerForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
