@@ -124,5 +124,17 @@ namespace 仓库管理系统
             }
             
         }
+
+        public static LoginUser GetUserInfo(LoginUser loginUser)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"select top 1 * from LoginUser(nolock) 
+                where  UserName=@UserName
+                Or  UserEmail=@UserEmail
+                Or UserTel=@UserTel";
+                return conn.QueryFirst<LoginUser>(sql, loginUser);
+            }
+        }
     }
 }

@@ -31,9 +31,18 @@ namespace 仓库管理系统
             }
             else if (Login.LoginCheck(user) >0)
             {
-                MessageBox.Show("登录成功");
-                WMSMainForm mainForm = new WMSMainForm(user);
-                mainForm.Show();
+                user = Login.GetUserInfo(user);
+                if (!(user.UserLV > 1))
+                {
+                    MessageBox.Show("对不起，您未获得授权无法登录。\n请联系管理员");
+                }
+                else
+                {
+                    MessageBox.Show($"{user.UserName}登录成功");
+                    WMSMainForm mainForm = new WMSMainForm(user);
+                    mainForm.Show();
+                }
+
             }
             else
             {

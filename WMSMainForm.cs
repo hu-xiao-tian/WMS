@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace 仓库管理系统
         public WMSMainForm(LoginUser loginUser)
         {
             InitializeComponent();
-            this.loginUser = MainForm.GetUserInfo(loginUser);
+            this.loginUser = loginUser;
             ShowWelcome(this.loginUser);
         }
 
@@ -26,6 +27,7 @@ namespace 仓库管理系统
             userIdLab.Text = "工号："+loginUser.AutoId.ToString();
             nicknameLab.Text = "昵称：" + loginUser.UserNickname;
             portraitPictureBox.Image = MainForm.GetPortraitImage(loginUser.UserPortraitUrl);
+
         }
 
     }

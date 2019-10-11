@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\HttpAction.cs" />
     <Compile Include="Action\IOStream.cs" />
     <Compile Include="Action\MainForm.cs" />
     <Compile Include="Action\RegexCheck.cs" />

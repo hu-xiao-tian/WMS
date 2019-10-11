@@ -14,17 +14,7 @@ namespace 仓库管理系统
     {
         public static string conStr = ConfigurationManager.ConnectionStrings["WMSDBconStr"].ConnectionString;
 
-        public static LoginUser GetUserInfo(LoginUser loginUser)
-        {
-            using(var conn = new SqlConnection(conStr))
-            {
-                string sql = @"select top 1 * from LoginUser(nolock) 
-                where  UserName=@UserName
-                Or  UserEmail=@UserEmail
-                Or UserTel=@UserTel";
-                return conn.QueryFirst<LoginUser>(sql, loginUser);
-            }
-        }
+        
 
         public static string GetLvInfo(int userLv)
         {
@@ -37,7 +27,13 @@ namespace 仓库管理系统
 
         internal static Image GetPortraitImage(string userPortraitUrl)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(userPortraitUrl))
+            {
+                userPortraitUrl = "http://p1.qzone.la/upload/20150311/tsljdoeq.png";
+            }
+            Image userPortraitPicture=HttpAction.GetPicture(userPortraitUrl);
+
+            return userPortraitPicture;
         }
     }
 }

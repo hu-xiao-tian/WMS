@@ -239,6 +239,7 @@
             this.portraitPictureBox.Location = new System.Drawing.Point(235, 85);
             this.portraitPictureBox.Name = "portraitPictureBox";
             this.portraitPictureBox.Size = new System.Drawing.Size(121, 107);
+            this.portraitPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.portraitPictureBox.TabIndex = 2;
             this.portraitPictureBox.TabStop = false;
             // 

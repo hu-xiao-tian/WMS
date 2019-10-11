@@ -55,7 +55,7 @@ namespace 仓库管理系统
             else if (DateTime.Now > codeSendTime)
             {
                 regeditCode = new Random(Guid.NewGuid().GetHashCode()).Next(100000, 999999);
-                if (Email.SentMailHXD(emailTxt.Text.Trim(), regeditCode.ToString(), "注册验证码"))
+                if (Email.SentMailHXD(emailTxt.Text.Trim(), regeditCode.ToString(), "改密验证码"))
                 {
                     user.UserEmail = emailTxt.Text.Trim();
                     emailLab.Text = "";
