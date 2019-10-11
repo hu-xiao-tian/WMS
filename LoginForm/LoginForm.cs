@@ -32,23 +32,25 @@ namespace 仓库管理系统
             else if (Login.LoginCheck(user) >0)
             {
                 MessageBox.Show("登录成功");
+                WMSMainForm mainForm = new WMSMainForm(user);
+                mainForm.Show();
             }
             else
             {
                 MessageBox.Show("用户名或密码错误");
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            RegisterForm registerForm = new RegisterForm();
-            registerForm.Show();
-        }
-
+        
         private void losePWLab_Click(object sender, EventArgs e)
         {
             FindPasswordForm findPasswordForm = new FindPasswordForm();
             findPasswordForm.Show();
+        }
+
+        private void registerBtn_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.Show();
         }
     }
 }

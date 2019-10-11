@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace 仓库管理系统
 {
-    class LoginUser
+    public class LoginUser
     {
         public int AutoId { get; set; }
         public string UserName { get; set; }

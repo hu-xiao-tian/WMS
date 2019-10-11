@@ -69,7 +69,7 @@
             this.registerBtn.TabIndex = 3;
             this.registerBtn.Text = "注册";
             this.registerBtn.UseVisualStyleBackColor = true;
-            this.registerBtn.Click += new System.EventHandler(this.button2_Click);
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // label1
             // 
