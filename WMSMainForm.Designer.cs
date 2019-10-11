@@ -37,7 +37,7 @@
             this.统计报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.shortcutTool = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -48,7 +48,7 @@
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.topMenu.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.shortcutTool.SuspendLayout();
             this.SuspendLayout();
             // 
             // topMenu
@@ -110,9 +110,9 @@
             this.窗口ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.窗口ToolStripMenuItem.Text = "窗口";
             // 
-            // toolStrip1
+            // shortcutTool
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.shortcutTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton7,
             this.toolStripButton6,
@@ -122,11 +122,11 @@
             this.toolStripButton2,
             this.toolStripButton10,
             this.toolStripButton9});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 40);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.shortcutTool.Location = new System.Drawing.Point(0, 25);
+            this.shortcutTool.Name = "shortcutTool";
+            this.shortcutTool.Size = new System.Drawing.Size(800, 40);
+            this.shortcutTool.TabIndex = 1;
+            this.shortcutTool.Text = "shortcutTool";
             // 
             // toolStripButton1
             // 
@@ -223,15 +223,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.shortcutTool);
             this.Controls.Add(this.topMenu);
             this.MainMenuStrip = this.topMenu;
             this.Name = "WMSMainForm";
             this.Text = "WMSMainForm";
             this.topMenu.ResumeLayout(false);
             this.topMenu.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.shortcutTool.ResumeLayout(false);
+            this.shortcutTool.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,7 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem 统计报表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 系统管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 窗口ToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip shortcutTool;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
