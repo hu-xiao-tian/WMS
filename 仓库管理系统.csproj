@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action\IOStream.cs" />
+    <Compile Include="Action\MainForm.cs" />
     <Compile Include="Action\RegexCheck.cs" />
     <Compile Include="Action\Email.cs" />
     <Compile Include="Action\Encryption.cs" />
@@ -94,6 +95,7 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Template\LoginUser.cs" />
+    <Compile Include="Template\LvInfo.cs" />
     <Compile Include="WMSMainForm.cs">
       <SubType>Form</SubType>
     </Compile>

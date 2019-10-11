@@ -20,9 +20,10 @@ namespace 仓库管理系统
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = @"select count(*) from LoginUser 
+                string sql = @"select count(*) from LoginUser(nolock) 
                 Where (UserName=@UserName and UserPassword=@UserPassword)
-                Or  (UserEmail=@UserEmail and UserPassword=@UserPassword)";
+                Or  (UserEmail=@UserEmail and UserPassword=@UserPassword)
+                Or (UserTel=@UserTel and UserPassword=@UserPassword)";
                 return conn.ExecuteScalar<int>(sql,user);
             }
         }
@@ -31,7 +32,7 @@ namespace 仓库管理系统
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = "select count(*) from LoginUser Where UserName=@UserName";
+                string sql = "select count(*) from LoginUser(nolock) Where UserName=@UserName";
                 return conn.ExecuteScalar<int>(sql, new { UserName=userName });
             }
         }
@@ -81,7 +82,7 @@ namespace 仓库管理系统
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = "select count(*) from LoginUser Where UserEmail=@UserEmail";
+                string sql = "select count(*) from LoginUser(nolock) Where UserEmail=@UserEmail";
                 return conn.ExecuteScalar<int>(sql, new { UserEmail = email });
             }
         }

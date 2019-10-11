@@ -12,11 +12,20 @@ namespace 仓库管理系统
 {
     public partial class WMSMainForm : Form
     {
-        LoginUser userName = new LoginUser();
-        public WMSMainForm(LoginUser userName)
+        LoginUser loginUser = new LoginUser();
+        public WMSMainForm(LoginUser loginUser)
         {
             InitializeComponent();
-            this.userName = userName;
+            this.loginUser = MainForm.GetUserInfo(loginUser);
+            ShowWelcome(this.loginUser);
+        }
+
+        private void ShowWelcome(LoginUser loginUser)
+        {
+            lvLab.Text = "欢迎回来："+MainForm.GetLvInfo(loginUser.UserLV);
+            userIdLab.Text = "工号："+loginUser.AutoId.ToString();
+            nicknameLab.Text = "昵称：" + loginUser.UserNickname;
+            portraitPictureBox.Image = MainForm.GetPortraitImage(loginUser.UserPortraitUrl);
         }
 
     }
