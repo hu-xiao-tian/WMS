@@ -23,11 +23,13 @@ namespace 仓库管理系统
 
         private void ShowWelcome(LoginUser loginUser)
         {
-            lvLab.Text = "欢迎回来："+MainForm.GetLvInfo(loginUser.UserLV);
-            userIdLab.Text = "工号："+loginUser.AutoId.ToString();
+            lvLab.Text = "欢迎回来：" + MainForm.GetLvInfo(loginUser.UserLV);
+            userIdLab.Text = "工号：" + loginUser.AutoId.ToString();
             nicknameLab.Text = "昵称：" + loginUser.UserNickname;
-            portraitPictureBox.Image = MainForm.GetPortraitImage(loginUser.UserPortraitUrl);
-
+            var multi = new MultiThreadWork();
+            multi.DoMultiWork((user) => {
+                portraitPictureBox.Image = MainForm.GetPortraitImage(user.UserPortraitUrl);
+            }, loginUser);
         }
 
     }

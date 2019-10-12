@@ -14,8 +14,6 @@ namespace 仓库管理系统
     {
         public static string conStr = ConfigurationManager.ConnectionStrings["WMSDBconStr"].ConnectionString;
 
-        
-
         public static string GetLvInfo(int userLv)
         {
             using (var conn = new SqlConnection(conStr))
@@ -27,13 +25,20 @@ namespace 仓库管理系统
 
         internal static Image GetPortraitImage(string userPortraitUrl)
         {
-            if (string.IsNullOrEmpty(userPortraitUrl))
+            try
             {
-                userPortraitUrl = "http://p1.qzone.la/upload/20150311/tsljdoeq.png";
+                if (string.IsNullOrEmpty(userPortraitUrl))
+                {
+                    userPortraitUrl = "http://p1.qzone.la/upload/20150311/tsljdoeq.png";
+                }
+                Image userPortraitPicture = HttpAction.GetPicture(userPortraitUrl);
+                return userPortraitPicture;
+            }catch(Exception ex)
+            {
+                IOStream.WriteErrorLog("头像资源访问失败.txt", $"错误内容：{ex.ToString()}");
+                return null;
             }
-            Image userPortraitPicture=HttpAction.GetPicture(userPortraitUrl);
-
-            return userPortraitPicture;
+            
         }
     }
 }
