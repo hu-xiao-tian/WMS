@@ -44,11 +44,11 @@ namespace 仓库管理系统
                 }
                 Login.CheckSendEmail(codeSendTime, sendEmailCode);
             }
-            else
-            {
-                int waitSeconds = (codeSendTime- DateTime.Now).Seconds;
-                codeLab.Text = $"每次发送验证码后要等待1分钟，剩余时间{waitSeconds}";
-            }
+            //else
+            //{
+            //    int waitSeconds = (codeSendTime- DateTime.Now).Seconds;
+            //    codeLab.Text = $"每次发送验证码后要等待1分钟，剩余时间{waitSeconds}";
+            //}
 
         }
 

@@ -26,17 +26,19 @@ namespace 仓库管理系统
                 while (true)
                 {
                     int waitTime = (codeSendTime - DateTime.Now).Seconds;
-                    if (waitTime > 0)
+                    if (waitTime >= 0)
                     {
                         btn.Text = $"等待：{waitTime}";
                         btn.Enabled = false;
+                        Thread.Sleep(1000);
                     }
                     else
                     {
                         btn.Text = "发送";
                         btn.Enabled = true;
+                        break;
                     }
-                    Thread.Sleep(1000);
+                    
                 }
             }, sendEmailCode);
         }
