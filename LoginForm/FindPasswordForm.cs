@@ -20,6 +20,7 @@ namespace 仓库管理系统
         public FindPasswordForm()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void emailTxt_Leave(object sender, EventArgs e)
@@ -61,6 +62,7 @@ namespace 仓库管理系统
                     emailLab.Text = "";
                     codeSendTime = DateTime.Now.AddSeconds(60);
                 }
+                Login.CheckSendEmail(codeSendTime, sendEmailCode);
             }
             else
             {

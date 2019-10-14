@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace 仓库管理系统
         public RegisterForm()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void sendEmailCode_Click(object sender, EventArgs e)
@@ -40,13 +42,14 @@ namespace 仓库管理系统
                     emailLab.Text = "";
                     codeSendTime = DateTime.Now.AddSeconds(60);
                 }
+                Login.CheckSendEmail(codeSendTime, sendEmailCode);
             }
             else
             {
                 int waitSeconds = (codeSendTime- DateTime.Now).Seconds;
                 codeLab.Text = $"每次发送验证码后要等待1分钟，剩余时间{waitSeconds}";
             }
-            
+
         }
 
         private void registerBtn_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Dapper;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Threading;
 
 namespace 仓库管理系统
 {
@@ -16,6 +17,29 @@ namespace 仓库管理系统
     {
         public static string conStr = ConfigurationManager.ConnectionStrings["WMSDBconStr"].ConnectionString;
 
+
+        public static void CheckSendEmail(DateTime codeSendTime,Button sendEmailCode)
+        {
+
+            var multi = new MultiThreadWork();
+            multi.DoMultiWork((btn) => {
+                while (true)
+                {
+                    int waitTime = (codeSendTime - DateTime.Now).Seconds;
+                    if (waitTime > 0)
+                    {
+                        btn.Text = $"等待：{waitTime}";
+                        btn.Enabled = false;
+                    }
+                    else
+                    {
+                        btn.Text = "发送";
+                        btn.Enabled = true;
+                    }
+                    Thread.Sleep(1000);
+                }
+            }, sendEmailCode);
+        }
         public static int LoginCheck(LoginUser user)
         {
             using (var conn = new SqlConnection(conStr))
