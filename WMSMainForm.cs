@@ -20,10 +20,10 @@ namespace 仓库管理系统
         {
             InitializeComponent();
             this.IsMdiContainer = true;
-            tabControl1.Hide();
+            mainTabControl.Hide();
             this.loginUser = loginUser;
             ShowWelcome(this.loginUser);
-            drawTabControl = new DrawTabControl(tabControl1, this.Font);
+            drawTabControl = new DrawTabControl(mainTabControl, this.Font);
         }
 
         private void ShowWelcome(LoginUser loginUser)
