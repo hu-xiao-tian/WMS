@@ -260,6 +260,7 @@
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.Padding = new System.Drawing.Point(15, 3);
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1006, 499);
             this.mainTabControl.TabIndex = 4;

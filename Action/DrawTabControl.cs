@@ -24,7 +24,6 @@ namespace 仓库管理系统
 
         public void Add_TabPage(string str, Form myForm)
         {
-            str += "  ";
             if (tabControlCheckHave(this.mainTabControl, str))
             {
                 return;
