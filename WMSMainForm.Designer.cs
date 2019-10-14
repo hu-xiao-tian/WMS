@@ -49,16 +49,17 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.portraitPictureBox = new System.Windows.Forms.PictureBox();
-            this.lvLab = new System.Windows.Forms.Label();
-            this.nicknameLab = new System.Windows.Forms.Label();
-            this.userIdLab = new System.Windows.Forms.Label();
             this.workPanel = new System.Windows.Forms.Panel();
             this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.bottomTool = new System.Windows.Forms.ToolStrip();
+            this.lvLab = new System.Windows.Forms.ToolStripLabel();
+            this.userIdLab = new System.Windows.Forms.ToolStripLabel();
+            this.nicknameLab = new System.Windows.Forms.ToolStripLabel();
+            this.portraitPictureBox = new System.Windows.Forms.ToolStripButton();
             this.topMenu.SuspendLayout();
             this.shortcutTool.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.portraitPictureBox)).BeginInit();
             this.workPanel.SuspendLayout();
+            this.bottomTool.SuspendLayout();
             this.SuspendLayout();
             // 
             // topMenu
@@ -74,7 +75,7 @@
             this.topMenu.Location = new System.Drawing.Point(0, 0);
             this.topMenu.Name = "topMenu";
             this.topMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.topMenu.Size = new System.Drawing.Size(875, 25);
+            this.topMenu.Size = new System.Drawing.Size(1006, 25);
             this.topMenu.TabIndex = 0;
             this.topMenu.Text = "topMenu";
             // 
@@ -151,7 +152,7 @@
             this.toolStripButton9});
             this.shortcutTool.Location = new System.Drawing.Point(0, 25);
             this.shortcutTool.Name = "shortcutTool";
-            this.shortcutTool.Size = new System.Drawing.Size(875, 40);
+            this.shortcutTool.Size = new System.Drawing.Size(1006, 40);
             this.shortcutTool.TabIndex = 1;
             this.shortcutTool.Text = "shortcutTool";
             // 
@@ -245,53 +246,13 @@
             this.toolStripButton9.Text = "库存调拨";
             this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // portraitPictureBox
-            // 
-            this.portraitPictureBox.Location = new System.Drawing.Point(277, 127);
-            this.portraitPictureBox.Name = "portraitPictureBox";
-            this.portraitPictureBox.Size = new System.Drawing.Size(121, 107);
-            this.portraitPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.portraitPictureBox.TabIndex = 2;
-            this.portraitPictureBox.TabStop = false;
-            // 
-            // lvLab
-            // 
-            this.lvLab.AutoSize = true;
-            this.lvLab.Location = new System.Drawing.Point(440, 127);
-            this.lvLab.Name = "lvLab";
-            this.lvLab.Size = new System.Drawing.Size(41, 12);
-            this.lvLab.TabIndex = 3;
-            this.lvLab.Text = "label1";
-            // 
-            // nicknameLab
-            // 
-            this.nicknameLab.AutoSize = true;
-            this.nicknameLab.Location = new System.Drawing.Point(440, 222);
-            this.nicknameLab.Name = "nicknameLab";
-            this.nicknameLab.Size = new System.Drawing.Size(41, 12);
-            this.nicknameLab.TabIndex = 3;
-            this.nicknameLab.Text = "label1";
-            // 
-            // userIdLab
-            // 
-            this.userIdLab.AutoSize = true;
-            this.userIdLab.Location = new System.Drawing.Point(440, 173);
-            this.userIdLab.Name = "userIdLab";
-            this.userIdLab.Size = new System.Drawing.Size(41, 12);
-            this.userIdLab.TabIndex = 3;
-            this.userIdLab.Text = "label1";
-            // 
             // workPanel
             // 
             this.workPanel.Controls.Add(this.mainTabControl);
-            this.workPanel.Controls.Add(this.portraitPictureBox);
-            this.workPanel.Controls.Add(this.userIdLab);
-            this.workPanel.Controls.Add(this.lvLab);
-            this.workPanel.Controls.Add(this.nicknameLab);
             this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workPanel.Location = new System.Drawing.Point(0, 65);
             this.workPanel.Name = "workPanel";
-            this.workPanel.Size = new System.Drawing.Size(875, 510);
+            this.workPanel.Size = new System.Drawing.Size(1006, 499);
             this.workPanel.TabIndex = 4;
             // 
             // mainTabControl
@@ -300,15 +261,56 @@
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(875, 510);
-            this.mainTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.mainTabControl.Size = new System.Drawing.Size(1006, 499);
             this.mainTabControl.TabIndex = 4;
+            // 
+            // bottomTool
+            // 
+            this.bottomTool.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.portraitPictureBox,
+            this.lvLab,
+            this.userIdLab,
+            this.nicknameLab});
+            this.bottomTool.Location = new System.Drawing.Point(0, 539);
+            this.bottomTool.Name = "bottomTool";
+            this.bottomTool.Size = new System.Drawing.Size(1006, 25);
+            this.bottomTool.TabIndex = 5;
+            this.bottomTool.Text = "toolStrip1";
+            // 
+            // lvLab
+            // 
+            this.lvLab.Name = "lvLab";
+            this.lvLab.Size = new System.Drawing.Size(96, 22);
+            this.lvLab.Text = "toolStripLabel1";
+            // 
+            // userIdLab
+            // 
+            this.userIdLab.Name = "userIdLab";
+            this.userIdLab.Size = new System.Drawing.Size(96, 22);
+            this.userIdLab.Text = "toolStripLabel2";
+            // 
+            // nicknameLab
+            // 
+            this.nicknameLab.Name = "nicknameLab";
+            this.nicknameLab.Size = new System.Drawing.Size(96, 22);
+            this.nicknameLab.Text = "toolStripLabel3";
+            // 
+            // portraitPictureBox
+            // 
+            this.portraitPictureBox.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.portraitPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("portraitPictureBox.Image")));
+            this.portraitPictureBox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.portraitPictureBox.Name = "portraitPictureBox";
+            this.portraitPictureBox.Size = new System.Drawing.Size(23, 22);
+            this.portraitPictureBox.Text = "头像";
             // 
             // WMSMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 575);
+            this.ClientSize = new System.Drawing.Size(1006, 564);
+            this.Controls.Add(this.bottomTool);
             this.Controls.Add(this.workPanel);
             this.Controls.Add(this.shortcutTool);
             this.Controls.Add(this.topMenu);
@@ -319,9 +321,9 @@
             this.topMenu.PerformLayout();
             this.shortcutTool.ResumeLayout(false);
             this.shortcutTool.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.portraitPictureBox)).EndInit();
             this.workPanel.ResumeLayout(false);
-            this.workPanel.PerformLayout();
+            this.bottomTool.ResumeLayout(false);
+            this.bottomTool.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,12 +350,13 @@
         private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripMenuItem 操作员设置ToolStripMenuItem;
-        private System.Windows.Forms.PictureBox portraitPictureBox;
-        private System.Windows.Forms.Label lvLab;
-        private System.Windows.Forms.Label nicknameLab;
-        private System.Windows.Forms.Label userIdLab;
         private System.Windows.Forms.Panel workPanel;
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip bottomTool;
+        private System.Windows.Forms.ToolStripLabel lvLab;
+        private System.Windows.Forms.ToolStripLabel userIdLab;
+        private System.Windows.Forms.ToolStripLabel nicknameLab;
+        private System.Windows.Forms.ToolStripButton portraitPictureBox;
     }
 }

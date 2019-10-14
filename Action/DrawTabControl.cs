@@ -64,7 +64,7 @@ namespace 仓库管理系统
             try
             {
                 this.mainTabControl.TabPages[e.Index].BackColor = Color.Red;
-                Color color = (e.State == DrawItemState.Selected) ? Color.Blue : Color.White;
+                Color color = (e.State == DrawItemState.Selected) ? Color.LightBlue : Color.White;
                 Rectangle backgroundRec = this.mainTabControl.GetTabRect(e.Index);
                 using(Pen pen = new Pen(color))
                 {
