@@ -37,6 +37,7 @@
             this.统计报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.操作员设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shortcutTool = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -52,11 +53,12 @@
             this.lvLab = new System.Windows.Forms.Label();
             this.nicknameLab = new System.Windows.Forms.Label();
             this.userIdLab = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.workPanel = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.topMenu.SuspendLayout();
             this.shortcutTool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portraitPictureBox)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.workPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // topMenu
@@ -72,7 +74,7 @@
             this.topMenu.Location = new System.Drawing.Point(0, 0);
             this.topMenu.Name = "topMenu";
             this.topMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.topMenu.Size = new System.Drawing.Size(800, 25);
+            this.topMenu.Size = new System.Drawing.Size(988, 25);
             this.topMenu.TabIndex = 0;
             this.topMenu.Text = "topMenu";
             // 
@@ -109,7 +111,8 @@
             // 系统管理ToolStripMenuItem
             // 
             this.系统管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.操作员设置ToolStripMenuItem});
+            this.操作员设置ToolStripMenuItem,
+            this.测试ToolStripMenuItem});
             this.系统管理ToolStripMenuItem.Name = "系统管理ToolStripMenuItem";
             this.系统管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.系统管理ToolStripMenuItem.Text = "系统管理";
@@ -119,6 +122,14 @@
             this.操作员设置ToolStripMenuItem.Name = "操作员设置ToolStripMenuItem";
             this.操作员设置ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.操作员设置ToolStripMenuItem.Text = "操作员设置";
+            this.操作员设置ToolStripMenuItem.Click += new System.EventHandler(this.操作员设置ToolStripMenuItem_Click);
+            // 
+            // 测试ToolStripMenuItem
+            // 
+            this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.测试ToolStripMenuItem.Text = "测试";
+            this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
             // 
             // 窗口ToolStripMenuItem
             // 
@@ -140,7 +151,7 @@
             this.toolStripButton9});
             this.shortcutTool.Location = new System.Drawing.Point(0, 25);
             this.shortcutTool.Name = "shortcutTool";
-            this.shortcutTool.Size = new System.Drawing.Size(800, 40);
+            this.shortcutTool.Size = new System.Drawing.Size(988, 40);
             this.shortcutTool.TabIndex = 1;
             this.shortcutTool.Text = "shortcutTool";
             // 
@@ -236,7 +247,7 @@
             // 
             // portraitPictureBox
             // 
-            this.portraitPictureBox.Location = new System.Drawing.Point(235, 85);
+            this.portraitPictureBox.Location = new System.Drawing.Point(277, 127);
             this.portraitPictureBox.Name = "portraitPictureBox";
             this.portraitPictureBox.Size = new System.Drawing.Size(121, 107);
             this.portraitPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -246,7 +257,7 @@
             // lvLab
             // 
             this.lvLab.AutoSize = true;
-            this.lvLab.Location = new System.Drawing.Point(398, 85);
+            this.lvLab.Location = new System.Drawing.Point(440, 127);
             this.lvLab.Name = "lvLab";
             this.lvLab.Size = new System.Drawing.Size(41, 12);
             this.lvLab.TabIndex = 3;
@@ -255,7 +266,7 @@
             // nicknameLab
             // 
             this.nicknameLab.AutoSize = true;
-            this.nicknameLab.Location = new System.Drawing.Point(398, 180);
+            this.nicknameLab.Location = new System.Drawing.Point(440, 222);
             this.nicknameLab.Name = "nicknameLab";
             this.nicknameLab.Size = new System.Drawing.Size(41, 12);
             this.nicknameLab.TabIndex = 3;
@@ -264,29 +275,40 @@
             // userIdLab
             // 
             this.userIdLab.AutoSize = true;
-            this.userIdLab.Location = new System.Drawing.Point(398, 131);
+            this.userIdLab.Location = new System.Drawing.Point(440, 173);
             this.userIdLab.Name = "userIdLab";
             this.userIdLab.Size = new System.Drawing.Size(41, 12);
             this.userIdLab.TabIndex = 3;
             this.userIdLab.Text = "label1";
             // 
-            // panel1
+            // workPanel
             // 
-            this.panel1.Controls.Add(this.portraitPictureBox);
-            this.panel1.Controls.Add(this.userIdLab);
-            this.panel1.Controls.Add(this.lvLab);
-            this.panel1.Controls.Add(this.nicknameLab);
-            this.panel1.Location = new System.Drawing.Point(22, 112);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(662, 296);
-            this.panel1.TabIndex = 4;
+            this.workPanel.Controls.Add(this.tabControl1);
+            this.workPanel.Controls.Add(this.portraitPictureBox);
+            this.workPanel.Controls.Add(this.userIdLab);
+            this.workPanel.Controls.Add(this.lvLab);
+            this.workPanel.Controls.Add(this.nicknameLab);
+            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workPanel.Location = new System.Drawing.Point(0, 65);
+            this.workPanel.Name = "workPanel";
+            this.workPanel.Size = new System.Drawing.Size(988, 510);
+            this.workPanel.TabIndex = 4;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Location = new System.Drawing.Point(4, 4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(981, 503);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl1.TabIndex = 4;
             // 
             // WMSMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(988, 575);
+            this.Controls.Add(this.workPanel);
             this.Controls.Add(this.shortcutTool);
             this.Controls.Add(this.topMenu);
             this.MainMenuStrip = this.topMenu;
@@ -297,8 +319,8 @@
             this.shortcutTool.ResumeLayout(false);
             this.shortcutTool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portraitPictureBox)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.workPanel.ResumeLayout(false);
+            this.workPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +351,8 @@
         private System.Windows.Forms.Label lvLab;
         private System.Windows.Forms.Label nicknameLab;
         private System.Windows.Forms.Label userIdLab;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel workPanel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem 测试ToolStripMenuItem;
     }
 }
