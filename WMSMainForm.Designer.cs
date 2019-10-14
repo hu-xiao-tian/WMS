@@ -247,25 +247,6 @@
             this.toolStripButton9.Text = "库存调拨";
             this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // workPanel
-            // 
-            this.workPanel.Controls.Add(this.mainTabControl);
-            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workPanel.Location = new System.Drawing.Point(0, 65);
-            this.workPanel.Name = "workPanel";
-            this.workPanel.Size = new System.Drawing.Size(1006, 499);
-            this.workPanel.TabIndex = 4;
-            // 
-            // mainTabControl
-            // 
-            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabControl.Name = "mainTabControl";
-            this.mainTabControl.Padding = new System.Drawing.Point(15, 3);
-            this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1006, 499);
-            this.mainTabControl.TabIndex = 4;
-            // 
             // bottomTool
             // 
             this.bottomTool.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -315,14 +296,33 @@
             this.onLineTime.Size = new System.Drawing.Size(96, 22);
             this.onLineTime.Text = "toolStripLabel1";
             // 
+            // workPanel
+            // 
+            this.workPanel.Controls.Add(this.mainTabControl);
+            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workPanel.Location = new System.Drawing.Point(0, 65);
+            this.workPanel.Name = "workPanel";
+            this.workPanel.Size = new System.Drawing.Size(1006, 499);
+            this.workPanel.TabIndex = 4;
+            // 
+            // mainTabControl
+            // 
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.Padding = new System.Drawing.Point(15, 3);
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1006, 499);
+            this.mainTabControl.TabIndex = 4;
+            // 
             // WMSMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 564);
-            this.Controls.Add(this.bottomTool);
             this.Controls.Add(this.workPanel);
             this.Controls.Add(this.shortcutTool);
+            this.Controls.Add(this.bottomTool);
             this.Controls.Add(this.topMenu);
             this.MainMenuStrip = this.topMenu;
             this.Name = "WMSMainForm";

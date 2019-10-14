@@ -62,7 +62,7 @@ namespace 仓库管理系统
            则每当 TabControl 需要绘制它的一个选项卡时，它就会引发 DrawItem 事件*/
             try
             {
-                this.mainTabControl.TabPages[e.Index].BackColor = Color.Red;
+                //this.mainTabControl.TabPages[e.Index].BackColor = Color.Red;
                 Color color = (e.State == DrawItemState.Selected) ? Color.LightBlue : Color.White;
                 Rectangle backgroundRec = this.mainTabControl.GetTabRect(e.Index);
                 using(Pen pen = new Pen(color))
