@@ -56,6 +56,7 @@
             this.userIdLab = new System.Windows.Forms.ToolStripLabel();
             this.nicknameLab = new System.Windows.Forms.ToolStripLabel();
             this.portraitPictureBox = new System.Windows.Forms.ToolStripButton();
+            this.onLineTime = new System.Windows.Forms.ToolStripLabel();
             this.topMenu.SuspendLayout();
             this.shortcutTool.SuspendLayout();
             this.workPanel.SuspendLayout();
@@ -121,14 +122,14 @@
             // 操作员设置ToolStripMenuItem
             // 
             this.操作员设置ToolStripMenuItem.Name = "操作员设置ToolStripMenuItem";
-            this.操作员设置ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.操作员设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.操作员设置ToolStripMenuItem.Text = "操作员设置";
             this.操作员设置ToolStripMenuItem.Click += new System.EventHandler(this.操作员设置ToolStripMenuItem_Click);
             // 
             // 测试ToolStripMenuItem
             // 
             this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
-            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.测试ToolStripMenuItem.Text = "测试";
             this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
             // 
@@ -272,7 +273,8 @@
             this.portraitPictureBox,
             this.lvLab,
             this.userIdLab,
-            this.nicknameLab});
+            this.nicknameLab,
+            this.onLineTime});
             this.bottomTool.Location = new System.Drawing.Point(0, 539);
             this.bottomTool.Name = "bottomTool";
             this.bottomTool.Size = new System.Drawing.Size(1006, 25);
@@ -305,6 +307,13 @@
             this.portraitPictureBox.Name = "portraitPictureBox";
             this.portraitPictureBox.Size = new System.Drawing.Size(23, 22);
             this.portraitPictureBox.Text = "头像";
+            // 
+            // onLineTime
+            // 
+            this.onLineTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.onLineTime.Name = "onLineTime";
+            this.onLineTime.Size = new System.Drawing.Size(96, 22);
+            this.onLineTime.Text = "toolStripLabel1";
             // 
             // WMSMainForm
             // 
@@ -359,5 +368,6 @@
         private System.Windows.Forms.ToolStripLabel userIdLab;
         private System.Windows.Forms.ToolStripLabel nicknameLab;
         private System.Windows.Forms.ToolStripButton portraitPictureBox;
+        private System.Windows.Forms.ToolStripLabel onLineTime;
     }
 }

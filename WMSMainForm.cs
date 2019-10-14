@@ -31,10 +31,19 @@ namespace 仓库管理系统
             lvLab.Text = "欢迎回来：" + MainForm.GetLvInfo(loginUser.UserLV);
             userIdLab.Text = "工号：" + loginUser.AutoId.ToString();
             nicknameLab.Text = "昵称：" + loginUser.UserNickname;
+            DateTime loginTime = DateTime.Now;
             var multi = new MultiThreadWork();
             multi.DoMultiWork((user) => {
                 portraitPictureBox.Image = MainForm.GetPortraitImage(user.UserPortraitUrl);
             }, loginUser);
+            multi.DoMultiWork((time) => {
+                while (true)
+                {
+                    TimeSpan onLineTimeRecord = DateTime.Now - time;
+                    onLineTime.Text = "你已在线："+onLineTimeRecord.ToString(@"hh\:mm\:ss");
+                    Thread.Sleep(1000);
+                }
+            }, loginTime);
         }
 
         //[DllImport("User32.dll")]
