@@ -88,6 +88,7 @@
     <Compile Include="Action\HttpAction.cs" />
     <Compile Include="Action\IOStream.cs" />
     <Compile Include="Action\MainForm.cs" />
+    <Compile Include="Action\ModelHandlerA.cs" />
     <Compile Include="Action\MultiThreadWork.cs" />
     <Compile Include="Action\RegexCheck.cs" />
     <Compile Include="Action\Email.cs" />
