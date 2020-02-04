@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using 仓库管理系统.Template;
 
 namespace 仓库管理系统
 {
@@ -20,7 +21,7 @@ namespace 仓库管理系统
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            LoginUser user = new LoginUser();
+            TLoginUser user = new TLoginUser();
             
             user.UserName = userNameTxt.Text;
             user.UserPassword = Encryption.GetMd5Str(userPasswordTxt.Text);
@@ -32,7 +33,7 @@ namespace 仓库管理系统
             else if (Login.LoginCheck(user) >0)
             {
                 user = Login.GetUserInfo(user);
-                if (!(user.UserLV > 1))
+                if (user.UserLV < 1)
                 {
                     MessageBox.Show("对不起，您未获得授权无法登录。\n请联系管理员");
                 }

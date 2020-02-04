@@ -10,6 +10,7 @@ using Dapper;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading;
+using 仓库管理系统.Template;
 
 namespace 仓库管理系统
 {
@@ -42,7 +43,7 @@ namespace 仓库管理系统
                 }
             }, sendEmailCode);
         }
-        public static int LoginCheck(LoginUser user)
+        public static int LoginCheck(TLoginUser user)
         {
             using (var conn = new SqlConnection(conStr))
             {
@@ -63,7 +64,7 @@ namespace 仓库管理系统
             }
         }
 
-        public static bool RegisterCheck(LoginUser user)
+        public static bool RegisterCheck(TLoginUser user)
         {
             if (string.IsNullOrEmpty(user.UserName))
             {
@@ -86,7 +87,7 @@ namespace 仓库管理系统
             }
         }
 
-        public static bool AlterPasswordCheck(LoginUser user)
+        public static bool AlterPasswordCheck(TLoginUser user)
         {
             if (string.IsNullOrEmpty(user.UserEmail))
             {
@@ -113,7 +114,7 @@ namespace 仓库管理系统
             }
         }
 
-        public static bool RegisterUser(LoginUser user)
+        public static bool RegisterUser(TLoginUser user)
         {
             try
             {
@@ -132,7 +133,7 @@ namespace 仓库管理系统
             
         }
 
-        public static bool AlterPassword(LoginUser user)
+        public static bool AlterPassword(TLoginUser user)
         {
             try
             {
@@ -151,7 +152,7 @@ namespace 仓库管理系统
             
         }
 
-        public static LoginUser GetUserInfo(LoginUser loginUser)
+        public static TLoginUser GetUserInfo(TLoginUser loginUser)
         {
             using (var conn = new SqlConnection(conStr))
             {
@@ -159,7 +160,7 @@ namespace 仓库管理系统
                 where  UserName=@UserName
                 Or  UserEmail=@UserEmail
                 Or UserTel=@UserTel";
-                return conn.QueryFirst<LoginUser>(sql, loginUser);
+                return conn.QueryFirst<TLoginUser>(sql, loginUser);
             }
         }
     }

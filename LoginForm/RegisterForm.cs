@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using 仓库管理系统.Template;
 
 namespace 仓库管理系统
 {
     public partial class RegisterForm : Form
     {
-        LoginUser user = new LoginUser();
+        TLoginUser user = new TLoginUser();
         int regeditCode = 1000000;
         DateTime codeSendTime = DateTime.Now;
 

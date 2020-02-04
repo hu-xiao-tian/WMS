@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using 仓库管理系统.Template;
 
 namespace 仓库管理系统
 {
     public partial class FindPasswordForm : Form
     {
-        LoginUser user = new LoginUser();
+        TLoginUser user = new TLoginUser();
         int regeditCode = 1000000;
         DateTime codeSendTime = DateTime.Now;
         bool isRight = false;
@@ -20,7 +21,7 @@ namespace 仓库管理系统
         public FindPasswordForm()
         {
             InitializeComponent();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            Control.CheckForIllegalCrossThreadCalls = false;//是否不可在多线程中使用控件
         }
 
         private void emailTxt_Leave(object sender, EventArgs e)

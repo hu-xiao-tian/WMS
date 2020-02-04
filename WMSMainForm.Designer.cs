@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WMSMainForm));
             this.topMenu = new System.Windows.Forms.MenuStrip();
             this.基本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.仓库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.入库管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.出库管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.库存管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,15 +50,20 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.workPanel = new System.Windows.Forms.Panel();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.bottomTool = new System.Windows.Forms.ToolStrip();
+            this.portraitPictureBox = new System.Windows.Forms.ToolStripButton();
             this.lvLab = new System.Windows.Forms.ToolStripLabel();
             this.userIdLab = new System.Windows.Forms.ToolStripLabel();
             this.nicknameLab = new System.Windows.Forms.ToolStripLabel();
-            this.portraitPictureBox = new System.Windows.Forms.ToolStripButton();
             this.onLineTime = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.商品资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.供应商资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.客户资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.topMenu.SuspendLayout();
             this.shortcutTool.SuspendLayout();
             this.workPanel.SuspendLayout();
@@ -82,9 +89,32 @@
             // 
             // 基本信息ToolStripMenuItem
             // 
+            this.基本信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.公司信息ToolStripMenuItem,
+            this.仓库设置ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.商品资料ToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.客户资料ToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.供应商资料ToolStripMenuItem});
             this.基本信息ToolStripMenuItem.Name = "基本信息ToolStripMenuItem";
             this.基本信息ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.基本信息ToolStripMenuItem.Text = "基本信息";
+            // 
+            // 公司信息ToolStripMenuItem
+            // 
+            this.公司信息ToolStripMenuItem.Name = "公司信息ToolStripMenuItem";
+            this.公司信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司信息ToolStripMenuItem.Text = "公司信息";
+            this.公司信息ToolStripMenuItem.Click += new System.EventHandler(this.公司信息ToolStripMenuItem_Click);
+            // 
+            // 仓库设置ToolStripMenuItem
+            // 
+            this.仓库设置ToolStripMenuItem.Name = "仓库设置ToolStripMenuItem";
+            this.仓库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.仓库设置ToolStripMenuItem.Text = "仓库设置";
+            this.仓库设置ToolStripMenuItem.Click += new System.EventHandler(this.仓库设置ToolStripMenuItem_Click);
             // 
             // 入库管理ToolStripMenuItem
             // 
@@ -149,8 +179,7 @@
             this.toolStripButton4,
             this.toolStripButton3,
             this.toolStripButton2,
-            this.toolStripButton10,
-            this.toolStripButton9});
+            this.toolStripButton10});
             this.shortcutTool.Location = new System.Drawing.Point(0, 25);
             this.shortcutTool.Name = "shortcutTool";
             this.shortcutTool.Size = new System.Drawing.Size(1006, 40);
@@ -170,6 +199,7 @@
             // toolStripButton7
             // 
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -237,15 +267,24 @@
             this.toolStripButton10.Text = "系统设置";
             this.toolStripButton10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton9
+            // workPanel
             // 
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton9.Size = new System.Drawing.Size(60, 37);
-            this.toolStripButton9.Text = "库存调拨";
-            this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.workPanel.Controls.Add(this.mainTabControl);
+            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workPanel.Location = new System.Drawing.Point(0, 65);
+            this.workPanel.Name = "workPanel";
+            this.workPanel.Size = new System.Drawing.Size(1006, 474);
+            this.workPanel.TabIndex = 4;
+            // 
+            // mainTabControl
+            // 
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.Padding = new System.Drawing.Point(15, 3);
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1006, 474);
+            this.mainTabControl.TabIndex = 4;
             // 
             // bottomTool
             // 
@@ -261,6 +300,15 @@
             this.bottomTool.Size = new System.Drawing.Size(1006, 25);
             this.bottomTool.TabIndex = 5;
             this.bottomTool.Text = "toolStrip1";
+            // 
+            // portraitPictureBox
+            // 
+            this.portraitPictureBox.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.portraitPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("portraitPictureBox.Image")));
+            this.portraitPictureBox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.portraitPictureBox.Name = "portraitPictureBox";
+            this.portraitPictureBox.Size = new System.Drawing.Size(23, 22);
+            this.portraitPictureBox.Text = "头像";
             // 
             // lvLab
             // 
@@ -280,15 +328,6 @@
             this.nicknameLab.Size = new System.Drawing.Size(96, 22);
             this.nicknameLab.Text = "toolStripLabel3";
             // 
-            // portraitPictureBox
-            // 
-            this.portraitPictureBox.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.portraitPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("portraitPictureBox.Image")));
-            this.portraitPictureBox.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.portraitPictureBox.Name = "portraitPictureBox";
-            this.portraitPictureBox.Size = new System.Drawing.Size(23, 22);
-            this.portraitPictureBox.Text = "头像";
-            // 
             // onLineTime
             // 
             this.onLineTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -296,24 +335,38 @@
             this.onLineTime.Size = new System.Drawing.Size(96, 22);
             this.onLineTime.Text = "toolStripLabel1";
             // 
-            // workPanel
+            // toolStripSeparator1
             // 
-            this.workPanel.Controls.Add(this.mainTabControl);
-            this.workPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workPanel.Location = new System.Drawing.Point(0, 65);
-            this.workPanel.Name = "workPanel";
-            this.workPanel.Size = new System.Drawing.Size(1006, 499);
-            this.workPanel.TabIndex = 4;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // mainTabControl
+            // 商品资料ToolStripMenuItem
             // 
-            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabControl.Name = "mainTabControl";
-            this.mainTabControl.Padding = new System.Drawing.Point(15, 3);
-            this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1006, 499);
-            this.mainTabControl.TabIndex = 4;
+            this.商品资料ToolStripMenuItem.Name = "商品资料ToolStripMenuItem";
+            this.商品资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.商品资料ToolStripMenuItem.Text = "商品资料";
+            // 
+            // 供应商资料ToolStripMenuItem
+            // 
+            this.供应商资料ToolStripMenuItem.Name = "供应商资料ToolStripMenuItem";
+            this.供应商资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.供应商资料ToolStripMenuItem.Text = "供应商资料";
+            // 
+            // 客户资料ToolStripMenuItem
+            // 
+            this.客户资料ToolStripMenuItem.Name = "客户资料ToolStripMenuItem";
+            this.客户资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.客户资料ToolStripMenuItem.Text = "客户资料";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // WMSMainForm
             // 
@@ -358,7 +411,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton10;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripMenuItem 操作员设置ToolStripMenuItem;
         private System.Windows.Forms.Panel workPanel;
         private System.Windows.Forms.TabControl mainTabControl;
@@ -369,5 +421,13 @@
         private System.Windows.Forms.ToolStripLabel nicknameLab;
         private System.Windows.Forms.ToolStripButton portraitPictureBox;
         private System.Windows.Forms.ToolStripLabel onLineTime;
+        private System.Windows.Forms.ToolStripMenuItem 公司信息ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 仓库设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 商品资料ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem 客户资料ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem 供应商资料ToolStripMenuItem;
     }
 }

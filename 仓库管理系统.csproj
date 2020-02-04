@@ -88,11 +88,25 @@
     <Compile Include="Action\HttpAction.cs" />
     <Compile Include="Action\IOStream.cs" />
     <Compile Include="Action\MainForm.cs" />
+    <Compile Include="Action\MDIAction.cs" />
+    <Compile Include="Action\MDIQuery.cs" />
     <Compile Include="Action\ModelHandlerA.cs" />
     <Compile Include="Action\MultiThreadWork.cs" />
     <Compile Include="Action\RegexCheck.cs" />
     <Compile Include="Action\Email.cs" />
     <Compile Include="Action\Encryption.cs" />
+    <Compile Include="CompanyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyInfo.Designer.cs">
+      <DependentUpon>CompanyInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageForm.Designer.cs">
+      <DependentUpon>ManageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm\FindPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +120,12 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Action\Login.cs" />
+    <Compile Include="ManageWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageWarehouse.Designer.cs">
+      <DependentUpon>ManageWarehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,19 +140,48 @@
     <Compile Include="LoginForm\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Template\LoginUser.cs" />
-    <Compile Include="Template\LvInfo.cs" />
+    <Compile Include="Template\TGood.cs" />
+    <Compile Include="Template\TGoods.cs" />
+    <Compile Include="Template\TGoodsType.cs" />
+    <Compile Include="Template\TInWarehouse.cs" />
+    <Compile Include="Template\TLoginUser.cs" />
+    <Compile Include="Template\TLvInfo.cs" />
+    <Compile Include="Template\TOutWarehouse.cs" />
+    <Compile Include="Template\TSupplier.cs" />
+    <Compile Include="Template\TClient.cs" />
+    <Compile Include="Template\TWarehouse.cs" />
+    <Compile Include="WarehouseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseForm.Designer.cs">
+      <DependentUpon>WarehouseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WMSMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WMSMainForm.Designer.cs">
       <DependentUpon>WMSMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerForm.Designer.cs">
+      <DependentUpon>WorkerForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CompanyInfo.resx">
+      <DependentUpon>CompanyInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageForm.resx">
+      <DependentUpon>ManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\FindPasswordForm.resx">
       <DependentUpon>FindPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageWarehouse.resx">
+      <DependentUpon>ManageWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIForm.resx">
       <DependentUpon>MDIForm.cs</DependentUpon>
@@ -149,10 +198,18 @@
     <EmbeddedResource Include="LoginForm\registerForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseForm.resx">
+      <DependentUpon>WarehouseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WMSMainForm.resx">
       <DependentUpon>WMSMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="WorkerForm.resx">
+      <DependentUpon>WorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,7 +238,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WMS.mdf</DependentUpon>
     </Content>
+    <Content Include="SqlQuery\Client表.sql" />
+    <Content Include="SqlQuery\GoodsType表.sql" />
+    <Content Include="SqlQuery\Goods表.sql" />
+    <Content Include="SqlQuery\Good表.sql" />
+    <Content Include="SqlQuery\InWarehouse表.sql" />
     <Content Include="SqlQuery\LoginUser表.sql" />
+    <Content Include="SqlQuery\LvInfo表.sql" />
+    <Content Include="SqlQuery\OutWarehouse表.sql" />
+    <Content Include="SqlQuery\Supplier表.sql" />
+    <Content Include="SqlQuery\Warehouse表.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Date\Image\" />
+    <Folder Include="Date\Text\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

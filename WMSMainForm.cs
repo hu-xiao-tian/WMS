@@ -9,14 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using 仓库管理系统.Template;
 
 namespace 仓库管理系统
 {
     public partial class WMSMainForm : Form
     {
-        LoginUser loginUser = new LoginUser();
+        TLoginUser loginUser = new TLoginUser();
         DrawTabControl drawTabControl ;
-        public WMSMainForm(LoginUser loginUser)
+        public WMSMainForm(TLoginUser loginUser)
         {
             InitializeComponent();
             this.IsMdiContainer = true;
@@ -26,7 +27,7 @@ namespace 仓库管理系统
             drawTabControl = new DrawTabControl(mainTabControl, this.Font);
         }
 
-        private void ShowWelcome(LoginUser loginUser)
+        private void ShowWelcome(TLoginUser loginUser)
         {
             lvLab.Text = "欢迎回来：" + MainForm.GetLvInfo(loginUser.UserLV);
             userIdLab.Text = "工号：" + loginUser.AutoId.ToString();
@@ -50,19 +51,26 @@ namespace 仓库管理系统
         //public static extern int SetParent(int hWndChild, int hWndNewParent);
         private void 操作员设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MDIForm f1 = new MDIForm();
-            drawTabControl.Add_TabPage("操作员设置", f1);
-            //MDIForm mdiForm = new MDIForm();
-            //mdiForm.MdiParent = this;
-            //this.workPanel.Controls.Add(mdiForm);
-            //SetParent((int)mdiForm.Handle, (int)workPanel.Handle);
-            //mdiForm.Show();
+            WorkerForm workerForm = new WorkerForm(loginUser);
+            drawTabControl.Add_TabPage("操作员设置", workerForm);
         }
 
         private void 测试ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MDIForm f2 = new MDIForm();
-            drawTabControl.Add_TabPage("测试", f2);
+            //MDIForm f2 = new MDIForm(loginUser);
+            //drawTabControl.Add_TabPage("测试", f2);
+        }
+
+        private void 公司信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompanyInfo companyInfo = new CompanyInfo(loginUser);
+            companyInfo.Show();
+        }
+
+        private void 仓库设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WarehouseForm warehouseForm = new WarehouseForm(loginUser);
+            drawTabControl.Add_TabPage("仓库设置", warehouseForm);
         }
     }
 }
