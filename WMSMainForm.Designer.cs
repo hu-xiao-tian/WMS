@@ -33,6 +33,12 @@
             this.基本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.公司信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.仓库设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.商品资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.客户资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.供应商资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.入库管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.出库管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.库存管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,12 +64,7 @@
             this.userIdLab = new System.Windows.Forms.ToolStripLabel();
             this.nicknameLab = new System.Windows.Forms.ToolStripLabel();
             this.onLineTime = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.商品资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.供应商资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.客户资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.供应商类型ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.shortcutTool.SuspendLayout();
             this.workPanel.SuspendLayout();
@@ -97,6 +98,7 @@
             this.toolStripSeparator2,
             this.客户资料ToolStripMenuItem,
             this.toolStripSeparator3,
+            this.供应商类型ToolStripMenuItem,
             this.供应商资料ToolStripMenuItem});
             this.基本信息ToolStripMenuItem.Name = "基本信息ToolStripMenuItem";
             this.基本信息ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
@@ -115,6 +117,40 @@
             this.仓库设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.仓库设置ToolStripMenuItem.Text = "仓库设置";
             this.仓库设置ToolStripMenuItem.Click += new System.EventHandler(this.仓库设置ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 商品资料ToolStripMenuItem
+            // 
+            this.商品资料ToolStripMenuItem.Name = "商品资料ToolStripMenuItem";
+            this.商品资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.商品资料ToolStripMenuItem.Text = "商品资料";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 客户资料ToolStripMenuItem
+            // 
+            this.客户资料ToolStripMenuItem.Name = "客户资料ToolStripMenuItem";
+            this.客户资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.客户资料ToolStripMenuItem.Text = "客户资料";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 供应商资料ToolStripMenuItem
+            // 
+            this.供应商资料ToolStripMenuItem.Name = "供应商资料ToolStripMenuItem";
+            this.供应商资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.供应商资料ToolStripMenuItem.Text = "供应商资料";
+            this.供应商资料ToolStripMenuItem.Click += new System.EventHandler(this.供应商资料ToolStripMenuItem_Click);
             // 
             // 入库管理ToolStripMenuItem
             // 
@@ -152,14 +188,14 @@
             // 操作员设置ToolStripMenuItem
             // 
             this.操作员设置ToolStripMenuItem.Name = "操作员设置ToolStripMenuItem";
-            this.操作员设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.操作员设置ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.操作员设置ToolStripMenuItem.Text = "操作员设置";
             this.操作员设置ToolStripMenuItem.Click += new System.EventHandler(this.操作员设置ToolStripMenuItem_Click);
             // 
             // 测试ToolStripMenuItem
             // 
             this.测试ToolStripMenuItem.Name = "测试ToolStripMenuItem";
-            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.测试ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.测试ToolStripMenuItem.Text = "测试";
             this.测试ToolStripMenuItem.Click += new System.EventHandler(this.测试ToolStripMenuItem_Click);
             // 
@@ -335,38 +371,12 @@
             this.onLineTime.Size = new System.Drawing.Size(96, 22);
             this.onLineTime.Text = "toolStripLabel1";
             // 
-            // toolStripSeparator1
+            // 供应商类型ToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 商品资料ToolStripMenuItem
-            // 
-            this.商品资料ToolStripMenuItem.Name = "商品资料ToolStripMenuItem";
-            this.商品资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.商品资料ToolStripMenuItem.Text = "商品资料";
-            // 
-            // 供应商资料ToolStripMenuItem
-            // 
-            this.供应商资料ToolStripMenuItem.Name = "供应商资料ToolStripMenuItem";
-            this.供应商资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.供应商资料ToolStripMenuItem.Text = "供应商资料";
-            // 
-            // 客户资料ToolStripMenuItem
-            // 
-            this.客户资料ToolStripMenuItem.Name = "客户资料ToolStripMenuItem";
-            this.客户资料ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.客户资料ToolStripMenuItem.Text = "客户资料";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.供应商类型ToolStripMenuItem.Name = "供应商类型ToolStripMenuItem";
+            this.供应商类型ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.供应商类型ToolStripMenuItem.Text = "供应商类型";
+            this.供应商类型ToolStripMenuItem.Click += new System.EventHandler(this.供应商类型ToolStripMenuItem_Click);
             // 
             // WMSMainForm
             // 
@@ -429,5 +439,6 @@
         private System.Windows.Forms.ToolStripMenuItem 客户资料ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem 供应商资料ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 供应商类型ToolStripMenuItem;
     }
 }

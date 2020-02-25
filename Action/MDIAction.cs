@@ -17,6 +17,13 @@ namespace 仓库管理系统
 {
     class MDIAction
     {
+        public static void AutoSetDGVCol(DataGridView dataGridView1)
+        {
+            for (int i = 0; i < dataGridView1.Columns.Count - 1; i++)
+            {
+                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            }
+        }
         /// <summary>
         /// 初始化用户树
         /// </summary>
@@ -35,6 +42,26 @@ namespace 仓库管理系统
             TreeNode treeRoot = new TreeNode("全部", treeNodes.ToArray());
             treeView.Nodes.Add(treeRoot);
         }
+
+        /// <summary>
+        /// 绑定供应商视图
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="list"></param>
+        public static DataGridView SetSupplierDataGridView(DataGridView dataGridView, List<TSupplier> suppliers)
+        {
+            ModelHandlerA.ModelHandler<TSupplier> modelHandler = new ModelHandlerA.ModelHandler<TSupplier>();
+            DataTable dt = modelHandler.FillDataTable(suppliers);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "供应商编号", "供应商名","拼音码","联系人", "地区", "地址", "官网", "电话", "邮箱", "类型id","类型名称", "排序" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+
         /// <summary>
         /// 绑定用户数据视图
         /// </summary>
@@ -59,6 +86,24 @@ namespace 仓库管理系统
             }
             return dataGridView;
         }
+
+        public static List<TSupplier> ExcelToSupplierOBJ(string openPath)
+        {
+            try
+            {
+                DataTable dt = ExcelHelper.GetDataTable(openPath, 1);
+                ModelHandlerA.ModelHandler<TSupplier> modelHandler = new ModelHandlerA.ModelHandler<TSupplier>();
+                List<TSupplier> suppliers = modelHandler.FillModel(dt);
+                return suppliers;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("导入失败");
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InputExcelError.txt", info);
+                return null;
+            }
+        }
+
         /// <summary>
         /// 修改用户权限
         /// 只能控制低于自己的权限
@@ -257,8 +302,22 @@ namespace 仓库管理系统
         public static DataRow GetGridViewCheckedMinRow(DataGridView dataGridView)
         {
             List<int> indexs = GetGridViewCheckedIndexs(dataGridView);
-            DataRow dr = (dataGridView.Rows[indexs.Min()].DataBoundItem as DataRowView).Row;
-            return dr;
+            if (indexs.Count > 0)
+            {
+                DataRow dr = (dataGridView.Rows[indexs.Min()].DataBoundItem as DataRowView).Row;
+                return dr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+
+        public static DataTable DataGridViewToDataTable(DataGridView dataGridView)
+        {
+            DataTable dt = (dataGridView.DataSource as DataTable);
+            return dt;
         }
 
         public static List<int> GetGridViewCheckedIndexs(DataGridView dataGridView)
@@ -269,7 +328,7 @@ namespace 仓库管理系统
                 int index = dataGridView.SelectedCells[i].RowIndex;
                 indexs.Add(index);
             }
-            return indexs;
+            return indexs.Distinct().ToList();//以单元格作为选中依据，会出现重复现象
         }
         
         public static List<DataRow> GetGridViewCheckedRows(DataGridView dataGridView)
@@ -305,6 +364,7 @@ namespace 仓库管理系统
             }
 
         }
+
         public static string SetExcelSaveUrl(string title)
         {
             SaveFileDialog s = new SaveFileDialog();
@@ -319,7 +379,7 @@ namespace 仓库管理系统
             s.DereferenceLinks = false;
             //返回快捷方式的路径而不是快捷方式映射的文件的路径
             s.Title = title;
-            s.RestoreDirectory = true;//没感觉每次都打开都回到了初始路径，你可以试一下
+            s.RestoreDirectory = true;//没感觉每次都打开都回到了初始路径
             s.ShowHelp = true;//帮助对话框
             s.HelpRequest += new EventHandler(s_HelpRequest);
             //注册帮助按钮事件
@@ -331,7 +391,31 @@ namespace 仓库管理系统
         }
         private static void s_HelpRequest(object sender, EventArgs e)
         {
-            MessageBox.Show("若遇到导出文件有问题，请选择xls");
+            MessageBox.Show("若遇到导入导出文件有问题，请选择xls");
+        }
+        public static string SetExcelOpenUrl(string title)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.InitialDirectory = @"C:\";
+            //对话框初始路径
+            o.FileName = "";
+            //默认保存的文件名
+            o.Filter = "表格文件(*.xls)|*.xls|表格文件(*.xlsx)|*.xlsx|所有文件(*.*)|*.*";
+            o.FilterIndex = 1;//默认选择文本文件
+            o.DefaultExt = ".xls";
+            //默认保存类型，如果过滤条件选所有文件且没写后缀名，则默认补上该默认值
+            o.DereferenceLinks = false;
+            //返回快捷方式的路径而不是快捷方式映射的文件的路径
+            o.Title = title;
+            o.RestoreDirectory = true;//没感觉每次都打开都回到了初始路径
+            o.ShowHelp = true;//帮助对话框
+            o.HelpRequest += new EventHandler(s_HelpRequest);
+            //注册帮助按钮事件
+            if (o.ShowDialog() == DialogResult.OK)
+            {
+                return o.FileName;
+            }
+            return "";
         }
         public static bool FilterIsUse(DataGridView dataGridView)
         {
@@ -378,6 +462,17 @@ namespace 仓库管理系统
                 warehouses.Add(warehouse);
             }
             return warehouses;
+        }
+        public static List<TSupplier> DataRowToSupplier(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TSupplier> modelHandler = new ModelHandlerA.ModelHandler<TSupplier>();
+            List<TSupplier> suppliers = new List<TSupplier>();
+            foreach (var dataRow in dataRows)
+            {
+                TSupplier supplier = modelHandler.FillModel(dataRow);
+                suppliers.Add(supplier);
+            }
+            return suppliers;
         }
     }
 }

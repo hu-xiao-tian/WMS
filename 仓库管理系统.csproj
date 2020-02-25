@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>dll\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper">
       <HintPath>dll\Dapper.dll</HintPath>
     </Reference>
@@ -86,25 +89,66 @@
     <Compile Include="Action\DrawTabControl.cs" />
     <Compile Include="Action\ExcelHelper.cs" />
     <Compile Include="Action\HttpAction.cs" />
+    <Compile Include="Action\InputFormAction.cs" />
     <Compile Include="Action\IOStream.cs" />
     <Compile Include="Action\MainForm.cs" />
     <Compile Include="Action\MDIAction.cs" />
     <Compile Include="Action\MDIQuery.cs" />
     <Compile Include="Action\ModelHandlerA.cs" />
     <Compile Include="Action\MultiThreadWork.cs" />
+    <Compile Include="Action\ObjCheck.cs" />
+    <Compile Include="Action\PinyinHelper.cs" />
     <Compile Include="Action\RegexCheck.cs" />
     <Compile Include="Action\Email.cs" />
     <Compile Include="Action\Encryption.cs" />
+    <Compile Include="Action\TypeControlAction.cs" />
+    <Compile Include="Action\TypeControlQuery.cs" />
     <Compile Include="CompanyInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompanyInfo.Designer.cs">
       <DependentUpon>CompanyInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageForm.cs">
+    <Compile Include="DataManage\ManageForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageForm.Designer.cs">
+    <Compile Include="DataManage\ManageForm2.Designer.cs">
+      <DependentUpon>ManageForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier.Designer.cs">
+      <DependentUpon>ManageSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier1.Designer.cs">
+      <DependentUpon>ManageSupplier1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageSupplier2.Designer.cs">
+      <DependentUpon>ManageSupplier2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TypeControl\TypeControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TypeControl\TypeControlForm.Designer.cs">
+      <DependentUpon>TypeControlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageForm.Designer.cs">
       <DependentUpon>ManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm\FindPasswordForm.cs">
@@ -120,10 +164,10 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Action\Login.cs" />
-    <Compile Include="ManageWarehouse.cs">
+    <Compile Include="DataManage\ManageWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageWarehouse.Designer.cs">
+    <Compile Include="DataManage\ManageWarehouse.Designer.cs">
       <DependentUpon>ManageWarehouse.cs</DependentUpon>
     </Compile>
     <Compile Include="MDIForm.cs">
@@ -140,6 +184,12 @@
     <Compile Include="LoginForm\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TypeControl\SupplierTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TypeControl\SupplierTypeForm.Designer.cs">
+      <DependentUpon>SupplierTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template\TGood.cs" />
     <Compile Include="Template\TGoods.cs" />
     <Compile Include="Template\TGoodsType.cs" />
@@ -149,6 +199,7 @@
     <Compile Include="Template\TOutWarehouse.cs" />
     <Compile Include="Template\TSupplier.cs" />
     <Compile Include="Template\TClient.cs" />
+    <Compile Include="Template\TSupplierType.cs" />
     <Compile Include="Template\TWarehouse.cs" />
     <Compile Include="WarehouseForm.cs">
       <SubType>Form</SubType>
@@ -171,7 +222,25 @@
     <EmbeddedResource Include="CompanyInfo.resx">
       <DependentUpon>CompanyInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageForm.resx">
+    <EmbeddedResource Include="DataManage\ManageForm2.resx">
+      <DependentUpon>ManageForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageSupplier.resx">
+      <DependentUpon>ManageSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageSupplier1.resx">
+      <DependentUpon>ManageSupplier1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageSupplier2.resx">
+      <DependentUpon>ManageSupplier2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TypeControl\TypeControlForm.resx">
+      <DependentUpon>TypeControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageForm.resx">
       <DependentUpon>ManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\FindPasswordForm.resx">
@@ -180,7 +249,7 @@
     <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageWarehouse.resx">
+    <EmbeddedResource Include="DataManage\ManageWarehouse.resx">
       <DependentUpon>ManageWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIForm.resx">
@@ -197,6 +266,9 @@
     </Compile>
     <EmbeddedResource Include="LoginForm\registerForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TypeControl\SupplierTypeForm.resx">
+      <DependentUpon>SupplierTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WarehouseForm.resx">
       <DependentUpon>WarehouseForm.cs</DependentUpon>
@@ -246,8 +318,10 @@
     <Content Include="SqlQuery\LoginUser表.sql" />
     <Content Include="SqlQuery\LvInfo表.sql" />
     <Content Include="SqlQuery\OutWarehouse表.sql" />
+    <Content Include="SqlQuery\SupplierType表.sql" />
     <Content Include="SqlQuery\Supplier表.sql" />
     <Content Include="SqlQuery\Warehouse表.sql" />
+    <Content Include="SqlQuery\连接查询.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Date\Image\" />

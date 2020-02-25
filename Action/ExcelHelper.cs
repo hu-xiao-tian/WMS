@@ -16,7 +16,7 @@ namespace 仓库管理系统
     /*
      * DateSet输出Excel：GetExcelByDataSet(DataSet ds, string file) 新建文件，若已存在会覆盖
      * DateTable输出Excel:GetExcelByDataTable(DataTable dt, string file) 文件不存在时新建文件，存在时追加sheet,若sheet同名会在名字后+1,若仍然重名+2以此类推
-     * Excel导入成DateTable:GetDataTable(string filePath, int sheetIndex) 
+     * Excel导入成DateTable:GetDataTable(string filePath, int 0) 
      * Excel导入成GetDataSet:GetDataSet(string filePath, int? sheetIndex = null)
      */
 

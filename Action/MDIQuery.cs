@@ -41,6 +41,78 @@ namespace 仓库管理系统
 
         }
         /// <summary>
+        /// 获取供应商数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TSupplier> GetSuppliers(string typeId=null)
+        {
+            try
+            {
+                List<TSupplier> suppliers = new List<TSupplier>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select Supplier.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Supplier.[RankNum] 
+from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
+                    if (!string.IsNullOrEmpty(typeId))
+                    {
+                        sql += $" where Supplier.TypeId ={typeId}";
+                    }
+                    sql += " Order by Supplier.[RankNum]";
+                    return conn.Query<TSupplier>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetSuppliersError.txt", info);
+                return null;
+            }
+        }
+        public static bool AlterSupplierInfo(TSupplier supplier)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"UPDATE Supplier SET 
+                    [CompanyName]=@CompanyName,[PinyinCode]=@PinyinCode,[ContactName]=@ContactName,
+                    [Area]=@Area,[Address]=@Address,[WebSite]=@WebSite,[Tel]=@Tel,
+                    [Email]=@Email,[TypeId]=@TypeId,[RankNum]=@RankNum 
+                     WHERE [AutoId]=@AutoId ";
+                        
+                    conn.Execute(sql, supplier);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("SupplierAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool InsertSupplierInfo(TSupplier supplier)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = "insert into " +
+                        "Supplier([CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[RankNum]) " +
+                        "Values(@CompanyName,@PinyinCode,@ContactName,@Area,@Address,@WebSite,@Tel,@Email,@TypeId,@RankNum)";
+                    conn.Execute(sql, supplier);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("SupplierAlterError.txt", info);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 根据用户名获取用户数据
         /// </summary>
         /// <param name="loginUsers">用户对象列表</param>
@@ -84,11 +156,11 @@ namespace 仓库管理系统
                 from LoginUser inner join LvInfo on LoginUser.UserLV = LvInfo.UserLv";
                     if (!string.IsNullOrEmpty(keyword))
                     {
-                        sql += $@" where LoginUser.UserName like '%{keyword}%' 
-                                or LoginUser.UserEmail like '%{keyword}%'
-                                or LoginUser.UserTel like '%{keyword}%'";
+                        sql += $@" where LoginUser.UserName like '%'+@Keyword+'%' 
+                                or LoginUser.UserEmail like '%'+@Keyword+'%' 
+                                or LoginUser.UserTel like '%'+@Keyword+'%' ";
                     }
-                    return conn.Query<TLoginUser>(sql).ToList();
+                    return conn.Query<TLoginUser>(sql,new { Keyword = keyword }).ToList();
                 }
             }
             catch (Exception ex)
@@ -224,6 +296,24 @@ namespace 仓库管理系统
             }
 
         }
+        public static int DeleteSupplierInfo(List<TSupplier> suppliers)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"delete from Supplier Where AutoId=@AutoId";
+                    return conn.Execute(sql, suppliers);
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("DeleteSupplierInfoError.txt", info);
+                return 0;
+            }
+
+        }
         public static List<TLoginUser> DataRowToLoginUser(List<DataRow> dataRows)
         {
             ModelHandlerA.ModelHandler<TLoginUser> modelHandler = new ModelHandlerA.ModelHandler<TLoginUser>();
@@ -247,21 +337,53 @@ namespace 仓库管理系统
             return warehouses;
         }
 
-        public static List<TWarehouse> GetWarehouseByName(string name)
+        public static List<TWarehouse> GetWarehouseByName(string keyWord)
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = $"select * from Warehouse(nolock) Where name like '%{name}%'";
-                return conn.Query<TWarehouse>(sql).ToList();
+                string sql = "select * from Warehouse(nolock) Where name like '%'+@KeyWord+'%'";
+                return conn.Query<TWarehouse>(sql,new { KeyWord = keyWord }).ToList();
             }
         }
-
+        public static List<TSupplier> GetSupplierByName(string keyWord)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"select * from Supplier(nolock) 
+                                Where CompanyName like '%'+@KeyWord+'%'
+                                OR PinyinCode like '%'+@KeyWord+'%'";
+                return conn.Query<TSupplier>(sql,new { KeyWord = keyWord}).ToList();
+            }
+        }
         public static List<TLvInfo> GetLvInfos(int lv)
         {
             using (var conn = new SqlConnection(conStr))
             {
                 string sql = $"select * from LvInfo(nolock) Where UserLv > {lv}";
                 return conn.Query<TLvInfo>(sql).ToList();
+            }
+        }
+        /// <summary>
+        /// 获取指定数据库中的最大排名数据
+        /// </summary>
+        /// <param name="dbName">数据库名</param>
+        /// <returns></returns>
+        public static int GetMaxRankNum(string dbName)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"SELECT top 1 [RankNum] FROM {dbName}(nolock) Order By [RankNum] desc";
+                    int rankNum = conn.Query<int>(sql).FirstOrDefault();
+                    return ++rankNum;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetDBRankNumError.txt", info);
+                return -1;
             }
         }
     }

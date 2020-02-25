@@ -72,5 +72,17 @@ namespace 仓库管理系统
             WarehouseForm warehouseForm = new WarehouseForm(loginUser);
             drawTabControl.Add_TabPage("仓库设置", warehouseForm);
         }
+
+        private void 供应商资料ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SupplierForm supplierForm = new SupplierForm();
+            drawTabControl.Add_TabPage("供应商资料", supplierForm);
+        }
+
+        private void 供应商类型ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SupplierTypeForm supplierTypeForm = new SupplierTypeForm();
+            supplierTypeForm.Show();
+        }
     }
 }
