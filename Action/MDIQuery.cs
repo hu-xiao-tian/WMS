@@ -272,12 +272,16 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
         /// 获取仓库数据
         /// </summary>
         /// <returns></returns>
-        public static List<TWarehouse> GetWarehouseInfo()
+        public static List<TWarehouse> GetWarehouseInfo(int AutoId = -1)
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = @"select [Id],[Name],[Address],[Area],[Tel],[Contacts],[IsUse],[IsDefault],[Description] 
+                string sql = @"select [AutoId],[Id],[Name],[Address],[Area],[Tel],[Contacts],[IsUse],[IsDefault],[Description] 
                 from Warehouse(nolock) ";
+                if (AutoId>0)
+                {
+                    sql += $" Where [AutoId] = {AutoId}";
+                }
                 return conn.Query<TWarehouse>(sql).ToList();
             }
         }
@@ -321,7 +325,7 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             }
 
         }
-        public static bool UpdateWarehouseInfo(TWarehouse warehouse, TWarehouse warehouseOld)
+        public static bool UpdateWarehouseInfo(TWarehouse warehouse)
         {
             try
             {
@@ -334,7 +338,7 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
                     }
                     string sql = $@"update Warehouse SET 
                     Id=@Id, Name=@Name, Address=@Address,Area=@Area,Tel=@Tel,Contacts=@Contacts,IsUse=@IsUse,IsDefault=@IsDefault,Description=@Description 
-                    Where Id='{warehouseOld.Id}'";
+                    Where Id=@Id";
                     conn.Execute(sql, warehouse);
                     return true;
                 }
@@ -424,12 +428,12 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             }
             return warehouses;
         }
-
+        
         public static List<TWarehouse> GetWarehouseByName(string keyWord)
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = "select * from Warehouse(nolock) Where name like '%'+@KeyWord+'%'";
+                string sql = "select * from Warehouse(nolock) Where Id like '%'+@KeyWord+'%' Or Name like '%'+@KeyWord+'%'";
                 return conn.Query<TWarehouse>(sql,new { KeyWord = keyWord }).ToList();
             }
         }
@@ -482,6 +486,29 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
                 String info = $"异常:{ex}";
                 IOStream.WriteErrorLog("GetDBRankNumError.txt", info);
                 return -1;
+            }
+        }
+        /// <summary>
+        /// 查询数据库中是否有关联的类型ID,返回值为关联总数
+        /// </summary>
+        /// <param name="types">类型ID列表</param>
+        /// <param name="dbName">数据库名</param>
+        /// <returns></returns>
+        public static int GetCountInfoByTypeId(List<int> types, string dbName)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"SELECT COUNT(*) FROM {dbName}(nolock) WHERE [TypeId] IN @Types";
+                    return conn.ExecuteScalar<int>(sql,new {Types = types });
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetDBCountInfoError.txt", info);
+                return 1;
             }
         }
     }

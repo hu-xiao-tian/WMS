@@ -32,7 +32,6 @@
             this.saveAddBtn = new System.Windows.Forms.Button();
             this.saveAlterBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
-            this.warnLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,22 +73,11 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // warnLab
-            // 
-            this.warnLab.AutoSize = true;
-            this.warnLab.ForeColor = System.Drawing.Color.Red;
-            this.warnLab.Location = new System.Drawing.Point(22, 324);
-            this.warnLab.Name = "warnLab";
-            this.warnLab.Size = new System.Drawing.Size(41, 12);
-            this.warnLab.TabIndex = 2;
-            this.warnLab.Text = "label1";
-            // 
             // ManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 412);
-            this.Controls.Add(this.warnLab);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.saveAlterBtn);
             this.Controls.Add(this.saveAddBtn);
@@ -97,7 +85,6 @@
             this.Name = "ManageForm";
             this.Text = "dataForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -106,6 +93,5 @@
         protected System.Windows.Forms.Button closeBtn;
         protected System.Windows.Forms.Button saveAlterBtn;
         protected System.Windows.Forms.Button saveAddBtn;
-        protected System.Windows.Forms.Label warnLab;
     }
 }

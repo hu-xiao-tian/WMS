@@ -11,6 +11,7 @@ namespace 仓库管理系统.Template
     /// </summary>
     public class TWarehouse
     {
+        public int AutoId { get; set; }
         /// <summary>
         /// 仓库Id（编号）
         /// </summary>

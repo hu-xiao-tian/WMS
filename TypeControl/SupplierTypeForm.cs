@@ -51,11 +51,18 @@ namespace 仓库管理系统
         {
             List<DataRow> dataRows = MDIAction.GetGridViewCheckedRows(dataGridView1);
             List<TSupplierType> supplierTypes = TypeControlAction.DataRowToSupplierType(dataRows);
-            int rows = TypeControlQuery.DeleteSupplierTypeInfo(supplierTypes);
-            MessageBox.Show($"成功删除{rows}行");
-            TypeControlAction.HideLabTxtBtn(typeNameLab, typeNameTxt, typeRankLab, typeRankTxt, insertBtn, alterBtn);
-            saveBtn.Visible = true;
-            FlashForm();
+            if(MDIAction.CheckIsAllowDelSupplierType(supplierTypes))
+            {
+                int rows = TypeControlQuery.DeleteSupplierTypeInfo(supplierTypes);
+                MessageBox.Show($"成功删除{rows}行");
+                TypeControlAction.HideLabTxtBtn(typeNameLab, typeNameTxt, typeRankLab, typeRankTxt, insertBtn, alterBtn);
+                saveBtn.Visible = true;
+                FlashForm();
+            }
+            else
+            {
+                MessageBox.Show("选中类型仍有关联不可删除");
+            }
         }
 
         public override void insertBtn_Click(object sender, EventArgs e)

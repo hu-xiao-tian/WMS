@@ -44,7 +44,7 @@ namespace 仓库管理系统
         private void addTSBtn_Click(object sender, EventArgs e)
         {
             ManageSupplier1 manageSupplier1 = new ManageSupplier1(dataGridView1, treeView);
-            manageSupplier1.Show();
+            manageSupplier1.ShowDialog();
         }
 
         private void alterTSBtn_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace 仓库管理系统
             if (dataGridView1.Rows.Count > 0)
             {
                 ManageSupplier2 manageSupplier2 = new ManageSupplier2(dataGridView1, treeView);
-                manageSupplier2.Show();
+                manageSupplier2.ShowDialog();
             }
             else
             {
@@ -96,7 +96,7 @@ namespace 仓库管理系统
         private void editBtn_Click(object sender, EventArgs e)
         {
             SupplierTypeForm supplierTypeForm = new SupplierTypeForm(this);
-            supplierTypeForm.Show();
+            supplierTypeForm.ShowDialog();
         }
         private void inputTSBtn_Click(object sender, EventArgs e)
         {

@@ -61,6 +61,9 @@ namespace 仓库管理系统
             }
             return dataGridView;
         }
+
+        
+
         /// <summary>
         /// 绑定客户视图
         /// </summary>
@@ -207,6 +210,10 @@ namespace 仓库管理系统
         {
             ModelHandlerA.ModelHandler<TWarehouse> modelHandler = new ModelHandlerA.ModelHandler<TWarehouse>();
             DataTable dt=modelHandler.FillDataTable(warehouses);
+            if (dt != null)
+            {
+                dt.Columns.Remove("AutoId");
+            }
             dataGridView.DataSource = dt;
             dataGridView.ColumnHeadersVisible = true;
             string[] colText = { "仓库编号", "仓库名称", "地址", "面积", "电话", "联系人" , "是否使用", "是否默认" , "备注" };
@@ -215,51 +222,6 @@ namespace 仓库管理系统
                 dataGridView.Columns[i].HeaderText = colText[i];
             }
             return dataGridView;
-        }
-        /// <summary>
-        /// 文本非空限长检测
-        /// 返回值：正确为文本框中字符串，错误为空值
-        /// </summary>
-        /// <param name="textBox">要检查的文本框</param>
-        /// <param name="lenth">限制的长度</param>
-        /// <param name="warnLab">警告标签</param>
-        /// <param name="property">检查的属性名称</param>
-        /// <returns></returns>
-        public static string TextCheck(TextBox textBox,int lenth,Label warnLab,string property)
-        {
-            if (string.IsNullOrEmpty(textBox.Text.Trim()) || textBox.Text.Trim().Length > lenth)
-            {
-                warnLab.Text = $"{property}不可为空，且长度必须小于{lenth}个字符";
-                return "";
-            }
-            else
-            {
-                //warnLab.Text = $"当前{property}可以使用";
-                warnLab.Text = "";
-                return textBox.Text.Trim();
-            }
-        }
-        /// <summary>
-        /// 文本限长检测
-        /// 返回值：正确为文本框中字符串，错误为空值
-        /// </summary>
-        /// <param name="textBox">要检查的文本框</param>
-        /// <param name="lenth">限制的长度</param>
-        /// <param name="warnLab">警告标签</param>
-        /// <param name="property">检查的属性名称</param>
-        /// <returns></returns>
-        public static string TextLenthCheck(TextBox textBox, int lenth, Label warnLab, string property)
-        {
-            if (textBox.Text.Trim().Length > lenth)
-            {
-                warnLab.Text = $"{property}长度必须小于{lenth}个字符";
-                return "";
-            }
-            else
-            {
-                warnLab.Text = "";
-                return textBox.Text.Trim();
-            }
         }
 
         public static void LeftSidebarControl(Panel leftPanel, ToolStripButton sidebarTSBtn)
@@ -275,62 +237,7 @@ namespace 仓库管理系统
                 sidebarTSBtn.Text = "隐藏侧边";
             }
         }
-
-
-        /// <summary>
-        /// 仓库信息检查
-        /// </summary>
-        /// <param name="warehouse"></param>
-        /// <returns></returns>
-        public static bool WarehouseInfoCheck(TWarehouse warehouse, TWarehouse warehouseOld=null)
-        {
-            //若修改时老id和新id是一样的，就不做id检查了 
-            bool isCheckId = true;
-            if (warehouseOld != null&& warehouse.Id == warehouseOld.Id)
-            {
-                isCheckId = false;
-            }
-
-            if (string.IsNullOrEmpty(warehouse.Id))
-            {
-                MessageBox.Show("请更正仓库编号");
-                return false;
-            }
-            else if (isCheckId? MDIQuery.NoCheck(warehouse.Id,"Warehouse")>0:false)
-            {
-                MessageBox.Show("仓库编号已经存在，请更正仓库编号");
-                return false;
-            }
-            else if (string.IsNullOrEmpty(warehouse.Name))
-            {
-                MessageBox.Show("请更正仓库名");
-                return false;
-            }
-            else if (string.IsNullOrEmpty(warehouse.Address))
-            {
-                MessageBox.Show("请更正仓库地址");
-                return false;
-            }
-            else if (string.IsNullOrEmpty(warehouse.Tel))
-            {
-                MessageBox.Show("请更正仓库联系电话");
-                return false;
-            }
-            else if (string.IsNullOrEmpty(warehouse.Contacts))
-            {
-                MessageBox.Show("请更正仓库联系人");
-                return false;
-            }
-            else if (!string.IsNullOrEmpty(warehouse.Description)&&warehouse.Description.Length > 2000)
-            {
-                MessageBox.Show("请更正仓库备注");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        
 
         public static DataRow GetGridViewCheckedMinRow(DataGridView dataGridView)
         {
@@ -517,6 +424,36 @@ namespace 仓库管理系统
                 clients.Add(client);
             }
             return clients;
+        }
+        public static bool CheckIsAllowDelSupplierType(List<TSupplierType> supplierTypes)
+        {
+            bool isAllow = true;
+            List<int> types = new List<int>();
+            foreach (var supplierType in supplierTypes)
+            {
+                types.Add(supplierType.AutoId);
+            }
+            int count = MDIQuery.GetCountInfoByTypeId(types, "Supplier");
+            if (count > 0)
+            {
+                isAllow = false;
+            }
+            return isAllow;
+        }
+        public static bool CheckIsAllowDelClientType(List<TClientType> clientTypes)
+        {
+            bool isAllow = true;
+            List<int> types = new List<int>();
+            foreach (var supplierType in clientTypes)
+            {
+                types.Add(supplierType.AutoId);
+            }
+            int count = MDIQuery.GetCountInfoByTypeId(types, "Client");
+            if (count > 0)
+            {
+                isAllow = false;
+            }
+            return isAllow;
         }
     }
 }

@@ -120,22 +120,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 41);
+            this.label1.Location = new System.Drawing.Point(11, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(95, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "仓库名称：";
+            this.label1.Text = "仓库编号/名称：";
             // 
             // selectTxt
             // 
-            this.selectTxt.Location = new System.Drawing.Point(65, 37);
+            this.selectTxt.Location = new System.Drawing.Point(110, 37);
             this.selectTxt.Name = "selectTxt";
             this.selectTxt.Size = new System.Drawing.Size(162, 21);
             this.selectTxt.TabIndex = 2;
             // 
             // selectBtn
             // 
-            this.selectBtn.Location = new System.Drawing.Point(233, 36);
+            this.selectBtn.Location = new System.Drawing.Point(278, 36);
             this.selectBtn.Name = "selectBtn";
             this.selectBtn.Size = new System.Drawing.Size(75, 23);
             this.selectBtn.TabIndex = 3;
@@ -146,7 +146,7 @@
             // FilterCheckBox
             // 
             this.FilterCheckBox.AutoSize = true;
-            this.FilterCheckBox.Location = new System.Drawing.Point(323, 39);
+            this.FilterCheckBox.Location = new System.Drawing.Point(368, 39);
             this.FilterCheckBox.Name = "FilterCheckBox";
             this.FilterCheckBox.Size = new System.Drawing.Size(72, 16);
             this.FilterCheckBox.TabIndex = 4;
@@ -156,6 +156,7 @@
             // 
             // WarehouseForm
             // 
+            this.AcceptButton = this.selectBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);

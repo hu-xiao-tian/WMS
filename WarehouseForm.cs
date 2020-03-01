@@ -31,7 +31,7 @@ namespace 仓库管理系统
         private void addTSBtn_Click(object sender, EventArgs e)
         {
             ManageWarehouse manageWarehouse = new ManageWarehouse(loginUser,dataGridView1);
-            manageWarehouse.Show();
+            manageWarehouse.ShowDialog();
         }
 
         private void WarehouseForm_Load(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace 仓库管理系统
         private void alterTSBtn_Click(object sender, EventArgs e)
         {
             ManageWarehouse manageWarehouse = new ManageWarehouse(loginUser, dataGridView1,true);
-            manageWarehouse.Show();
+            manageWarehouse.ShowDialog();
         }
 
         private void delTSBtn_Click(object sender, EventArgs e)

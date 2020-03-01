@@ -41,14 +41,14 @@ namespace 仓库管理系统
         private void addTSBtn_Click(object sender, EventArgs e)
         {
             ManageClient1 manageClient1 = new ManageClient1(dataGridView1, treeView);
-            manageClient1.Show();
+            manageClient1.ShowDialog();
         }
         private void alterTSBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
             {
                 ManageClient2 manageClient2 = new ManageClient2(dataGridView1, treeView);
-                manageClient2.Show();
+                manageClient2.ShowDialog();
             }
             else
             {
@@ -87,7 +87,7 @@ namespace 仓库管理系统
         private void editBtn_Click(object sender, EventArgs e)
         {
             ClientTypeForm clientTypeForm = new ClientTypeForm(this);
-            clientTypeForm.Show();
+            clientTypeForm.ShowDialog();
         }
         private void inputTSBtn_Click(object sender, EventArgs e)
         {

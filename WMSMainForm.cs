@@ -64,7 +64,7 @@ namespace 仓库管理系统
         private void 公司信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompanyInfo companyInfo = new CompanyInfo(loginUser);
-            companyInfo.Show();
+            companyInfo.ShowDialog();
         }
 
         private void 仓库设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace 仓库管理系统
         private void 供应商类型ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SupplierTypeForm supplierTypeForm = new SupplierTypeForm();
-            supplierTypeForm.Show();
+            supplierTypeForm.ShowDialog();
         }
 
         private void 客户资料ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace 仓库管理系统
         private void 客户类型ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClientTypeForm clientTypeForm = new ClientTypeForm();
-            clientTypeForm.Show();
+            clientTypeForm.ShowDialog();
         }
     }
 }

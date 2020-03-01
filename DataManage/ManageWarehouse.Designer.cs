@@ -68,7 +68,6 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Size = new System.Drawing.Size(520, 334);
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // closeBtn
             // 
@@ -83,10 +82,6 @@
             // 
             this.saveAddBtn.Location = new System.Drawing.Point(124, 367);
             this.saveAddBtn.Click += new System.EventHandler(this.saveAddBtn_Click);
-            // 
-            // warnLab
-            // 
-            this.warnLab.Location = new System.Drawing.Point(12, 345);
             // 
             // label1
             // 
@@ -112,7 +107,6 @@
             this.noTxt.Name = "noTxt";
             this.noTxt.Size = new System.Drawing.Size(136, 21);
             this.noTxt.TabIndex = 1;
-            this.noTxt.Leave += new System.EventHandler(this.NoTxt_Leave);
             // 
             // nameTxt
             // 
@@ -120,7 +114,6 @@
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(130, 21);
             this.nameTxt.TabIndex = 1;
-            this.nameTxt.Leave += new System.EventHandler(this.NameTxt_Leave);
             // 
             // label3
             // 
@@ -137,7 +130,6 @@
             this.addrTxt.Name = "addrTxt";
             this.addrTxt.Size = new System.Drawing.Size(356, 21);
             this.addrTxt.TabIndex = 1;
-            this.addrTxt.Leave += new System.EventHandler(this.addrTxt_Leave);
             // 
             // label4
             // 
@@ -163,7 +155,6 @@
             this.telTxt.Name = "telTxt";
             this.telTxt.Size = new System.Drawing.Size(136, 21);
             this.telTxt.TabIndex = 1;
-            this.telTxt.Leave += new System.EventHandler(this.telTxt_Leave);
             // 
             // contactsTxt
             // 
@@ -171,7 +162,6 @@
             this.contactsTxt.Name = "contactsTxt";
             this.contactsTxt.Size = new System.Drawing.Size(130, 21);
             this.contactsTxt.TabIndex = 1;
-            this.contactsTxt.Leave += new System.EventHandler(this.contactsTxt_Leave);
             // 
             // label6
             // 
@@ -180,7 +170,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 0;
-            this.label6.Text = "停用：";
+            this.label6.Text = "启用：";
             // 
             // descriptionTxt
             // 
@@ -189,7 +179,6 @@
             this.descriptionTxt.Name = "descriptionTxt";
             this.descriptionTxt.Size = new System.Drawing.Size(356, 63);
             this.descriptionTxt.TabIndex = 1;
-            this.descriptionTxt.Leave += new System.EventHandler(this.descriptionTxt_Leave);
             // 
             // isUseCheckBox
             // 
@@ -237,7 +226,6 @@
             this.areaTxt.Name = "areaTxt";
             this.areaTxt.Size = new System.Drawing.Size(356, 21);
             this.areaTxt.TabIndex = 1;
-            this.areaTxt.Leave += new System.EventHandler(this.areaTxt_Leave);
             // 
             // ManageWarehouse
             // 

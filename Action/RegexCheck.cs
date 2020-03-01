@@ -88,6 +88,43 @@ namespace 仓库管理系统
                 e.Handled = true;
             }
         }
+        /// <summary>
+        /// 文本非空限长检测
+        /// 返回值：布尔值
+        /// </summary>
+        /// <param name="text">要检查的文本</param>
+        /// <param name="lenth">限制的长度</param>
+        /// <param name="property">检查的属性名称</param>
+        /// <returns></returns>
+        public static bool TextCheck(string text, int lenth)
+        {
+            if (string.IsNullOrEmpty(text) || text.Length > lenth)
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// 文本限长检测
+        /// 返回值：布尔值
+        /// </summary>
+        /// <param name="text">要检查的文本</param>
+        /// <param name="lenth">限制的长度</param>
+        /// <returns></returns>
+        public static bool TextLengthCheck(string text, int lenth)
+        {
+            if (text.Length > lenth)
+            {
+                return false;
+            }
+            return true;
+        }
 
+        public static bool IsFloat(string str)
+        {
+            string regextext = @"^\d+\.\d+$";
+            Regex regex = new Regex(regextext, RegexOptions.None);
+            return regex.IsMatch(str);
+        }
     }
 }
