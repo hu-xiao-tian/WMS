@@ -22,6 +22,8 @@ namespace 仓库管理系统
         {
             leftPanel.Width = (fWidth / block) * leftBlock;
         }
+
+
         /// <summary>
         /// 调用树视图右键菜单
         /// </summary>
@@ -66,7 +68,33 @@ namespace 仓库管理系统
             }
             return null;
         }
+        public static TClientType SetClientType(string typeName, string typeRank, int autoId = -1)
+        {
+            int count = TypeControlQuery.TypeNameCheck(typeName, "ClientType", autoId);
+            if (count > 0)
+            {
+                MessageBox.Show($"{typeName}类型已存在");
+            }
+            else if (!RegexCheck.IsInterger(typeRank))
+            {
+                MessageBox.Show("排序码只能为整数");
+            }
+            else
+            {
+                TClientType clientType = new TClientType()
+                {
+                    Name = typeName,
+                    RankNum = Convert.ToInt32(typeRank)
 
+                };
+                if (autoId > 0)
+                {
+                    clientType.AutoId = autoId;
+                }
+                return clientType;
+            }
+            return null;
+        }
 
         public static void ChangeTypeBtnClick(ToolStripLabel typeNameLab = null, ToolStripTextBox typeNameTxt = null, ToolStripLabel typeRankLab = null, ToolStripTextBox typeRankTxt = null, ToolStripButton btn1 = null, ToolStripButton btn2 = null, ToolStripButton btn3 = null)
         {
@@ -102,6 +130,17 @@ namespace 仓库管理系统
                 supplierTypes.Add(supplierType);
             }
             return supplierTypes;
+        }
+        public static List<TClientType> DataRowToClientType(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TClientType> modelHandler = new ModelHandlerA.ModelHandler<TClientType>();
+            List<TClientType> clientTypes = new List<TClientType>();
+            foreach (var dataRow in dataRows)
+            {
+                TClientType clientType = modelHandler.FillModel(dataRow);
+                clientTypes.Add(clientType);
+            }
+            return clientTypes;
         }
 
         public static void ShowLabTxtBtn(ToolStripLabel typeNameLab, ToolStripTextBox typeNameTxt, ToolStripLabel typeRankLab, ToolStripTextBox typeRankTxt, ToolStripButton btn1 = null, ToolStripButton btn2 = null)
@@ -150,7 +189,27 @@ namespace 仓库管理系统
                 btn2.Visible = false;
             }
         }
-
+        /// <summary>
+        /// 设置客户类型视图
+        /// </summary>
+        /// <param name="dataGridView">视图对象</param>
+        /// <param name="clientTypes">实体对象列表</param>
+        /// <returns></returns>
+        public static DataGridView SetClientTypeDataGridView(DataGridView dataGridView, List<TClientType> clientTypes)
+        {
+            ModelHandlerA.ModelHandler<TClientType> modelHandler = new ModelHandlerA.ModelHandler<TClientType>();
+            DataTable dt = modelHandler.FillDataTable(clientTypes);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "类型编号", "类型名称", "类型排序" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderCell.Value = colText[i];
+            }
+            dataGridView.Columns[0].ReadOnly = true;
+            dataGridView.Columns[1].ReadOnly = true;
+            return dataGridView;
+        }
         /// <summary>
         /// 设置供应商类型视图
         /// </summary>
@@ -215,6 +274,25 @@ namespace 仓库管理系统
                 TreeNode cNode = new TreeNode();
                 cNode.Name = supplierInfo.AutoId.ToString();
                 cNode.Text = supplierInfo.Name;
+                treeNodes.Add(cNode);
+            }
+            TreeNode treeRoot = new TreeNode("全部", treeNodes.ToArray());
+            treeView.Nodes.Clear();
+            treeView.Nodes.Add(treeRoot);
+            treeView.ExpandAll();
+        }
+        /// <summary>
+        /// 初始化客户类型树视图
+        /// </summary>
+        /// <param name="tree"></param>
+        public static void InitClientTypeTree(TreeView treeView, List<TClientType> clientTypes)
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+            foreach (var clientInfo in clientTypes)
+            {
+                TreeNode cNode = new TreeNode();
+                cNode.Name = clientInfo.AutoId.ToString();
+                cNode.Text = clientInfo.Name;
                 treeNodes.Add(cNode);
             }
             TreeNode treeRoot = new TreeNode("全部", treeNodes.ToArray());

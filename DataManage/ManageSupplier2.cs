@@ -19,10 +19,13 @@ namespace 仓库管理系统
         }
         public ManageSupplier2(DataGridView dataGridView, TreeView treeView) : base(dataGridView, treeView)
         {
-            DataRow dr = (dataGridView.Rows[index].DataBoundItem as DataRowView).Row;
-            this.supplier = modelHandler.FillModel(dr);
-            FillText(supplier);
-            InitializeComponent();
+            if (dataGridView.Rows.Count > 0)
+            {
+                DataRow dr = (dataGridView.Rows[index].DataBoundItem as DataRowView).Row;
+                this.supplier = modelHandler.FillModel(dr);
+                FillText(supplier);
+                InitializeComponent();
+            }
         }
         public override void saveBtn_Click(object sender, EventArgs e)
         {

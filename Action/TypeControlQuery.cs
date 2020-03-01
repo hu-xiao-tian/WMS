@@ -22,7 +22,14 @@ namespace 仓库管理系统
                 return conn.Query<TSupplierType>(sql).ToList();
             }
         }
-
+        public static List<TClientType> GetClientTypes()
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = "SELECT [AutoId],[Name],[RankNum] FROM ClientType(nolock) ORDER BY [RankNum]";
+                return conn.Query<TClientType>(sql).ToList();
+            }
+        }
         public static TSupplierType GetSupplierTypesById(string id)
         {
             try
@@ -39,6 +46,25 @@ namespace 仓库管理系统
             {
                 String info = $"异常:{ex}";
                 IOStream.WriteErrorLog("SelectSupplierTypesInfoError.txt", info);
+                return null;
+            }
+        }
+        public static TClientType GetClientTypesById(string id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"SELECT [AutoId],[Name],[RankNum] 
+                    FROM ClientType(nolock) 
+                    WHERE AutoId = @Id";
+                    return conn.Query<TClientType>(sql, new { Id = id }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("SelectClientTypesInfoError.txt", info);
                 return null;
             }
         }
@@ -62,6 +88,25 @@ namespace 仓库管理系统
                 return null;
             }
         }
+        public static TClientType GetClientTypesByName(string name)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"SELECT [AutoId],[Name],[RankNum] 
+                    FROM ClientType(nolock) 
+                    WHERE Name = @Name";
+                    return conn.Query<TClientType>(sql, new { Name = name }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("SelectClientTypesInfoError.txt", info);
+                return null;
+            }
+        }
 
         public static int DeleteSupplierTypeInfo(List<TSupplierType> supplierTypes)
         {
@@ -80,9 +125,25 @@ namespace 仓库管理系统
                 return 0;
             }
         }
-        
+        public static int DeleteClientTypeInfo(List<TClientType> clientTypes)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"delete from ClientType Where AutoId=@AutoId";
+                    return conn.Execute(sql, clientTypes);
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("DeleteClientTypesInfoError.txt", info);
+                return 0;
+            }
+        }
 
-        public static bool InserSupplierTypeInfo(TSupplierType supplierType)
+        public static bool InsertSupplierTypeInfo(TSupplierType supplierType)
         {
             try
             {
@@ -100,7 +161,24 @@ namespace 仓库管理系统
                 return false;
             }
         }
-
+        public static bool InsertClientTypeInfo(TClientType clientType)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"Insert into ClientType (Name,RankNum) values(@Name,@RankNum)";
+                    conn.Execute(sql, clientType);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InsertClientTypesInfoError.txt", info);
+                return false;
+            }
+        }
         public static int TypeNameCheck(string typeName,string DBName,int autoId)
         {
             using (var conn = new SqlConnection(conStr))
@@ -132,7 +210,24 @@ namespace 仓库管理系统
                 return false;
             }
         }
-
+        public static bool UpdateClientTypeInfo(TClientType clientType)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"UPDATE ClientType SET Name = @Name,RankNum=@RankNum WHERE AutoId = @AutoId;";
+                    conn.Execute(sql, clientType);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("AlterClientTypesInfoError.txt", info);
+                return false;
+            }
+        }
         public static bool UpdateSupplierTypesInfo(List<TSupplierType> supplierTypes)
         {
             try
@@ -148,6 +243,24 @@ namespace 仓库管理系统
             {
                 String info = $"异常:{ex}";
                 IOStream.WriteErrorLog("AlterSupplierTypesInfoError.txt", info);
+                return false;
+            }
+        }
+        public static bool UpdateClientTypesInfo(List<TClientType> clientTypes)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"UPDATE ClientType SET Name = @Name,RankNum=@RankNum WHERE AutoId = @AutoId;";
+                    conn.Execute(sql, clientTypes);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("AlterClientTypesInfoError.txt", info);
                 return false;
             }
         }

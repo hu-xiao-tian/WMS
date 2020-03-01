@@ -49,17 +49,32 @@ namespace 仓库管理系统
 
         private void alterTSBtn_Click(object sender, EventArgs e)
         {
-            ManageSupplier2 manageSupplier2 = new ManageSupplier2(dataGridView1, treeView);
-            manageSupplier2.Show();
+            if (dataGridView1.Rows.Count > 0)
+            {
+                ManageSupplier2 manageSupplier2 = new ManageSupplier2(dataGridView1, treeView);
+                manageSupplier2.Show();
+            }
+            else
+            {
+                MessageBox.Show("请选择修改对象");
+            }
         }
 
         private void delTSBtn_Click(object sender, EventArgs e)
         {
             List<DataRow> dataRows = MDIAction.GetGridViewCheckedRows(dataGridView1);
-            List<TSupplier> suppliers = MDIAction.DataRowToSupplier(dataRows);
-            int rows = MDIQuery.DeleteSupplierInfo(suppliers);
-            MessageBox.Show($"成功删除{rows}行");
-            FlashForm();
+            if (dataRows.Count > 0)
+            {
+                List<TSupplier> suppliers = MDIAction.DataRowToSupplier(dataRows);
+                int rows = MDIQuery.DeleteSupplierInfo(suppliers);
+                MessageBox.Show($"成功删除{rows}行");
+                FlashForm();
+            }
+            else
+            {
+                MessageBox.Show("请选择要删除的对象");
+            }
+
         }
 
         private void outputTSBtn_Click(object sender, EventArgs e)

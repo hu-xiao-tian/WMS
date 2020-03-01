@@ -23,7 +23,11 @@ namespace 仓库管理系统
         {
             this.dataGridView = dataGridView;
             this.treeView = treeView;
-            this.index = MDIAction.GetGridViewCheckedIndexs(dataGridView).Min();
+            List<int> indexs= MDIAction.GetGridViewCheckedIndexs(dataGridView);
+            if (indexs.Count>0)
+            {
+                this.index = indexs.Min();
+            }
             InitializeComponent();
         }
 

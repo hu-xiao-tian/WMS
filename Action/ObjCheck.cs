@@ -25,5 +25,20 @@ namespace 仓库管理系统
             }
             return result;
         }
+        public static bool CheckClient(TClient client)
+        {
+            bool result = true;
+            if (!RegexCheck.EmailCheck(client.Email))
+            {
+                result = false;
+                MessageBox.Show("邮箱格式错误");
+            }
+            if (!RegexCheck.TelCheck(client.Tel) && !RegexCheck.FixTelCheck(client.Tel))
+            {
+                result = false;
+                MessageBox.Show("电话或固话格式错误");
+            }
+            return result;
+        }
     }
 }

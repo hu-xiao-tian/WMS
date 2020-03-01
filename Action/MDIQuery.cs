@@ -68,6 +68,34 @@ from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
                 return null;
             }
         }
+        /// <summary>
+        /// 获取客户数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TClient> GetClients(string typeId = null)
+        {
+            try
+            {
+                List<TClient> clients = new List<TClient>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select Client.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Client.[RankNum] 
+from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
+                    if (!string.IsNullOrEmpty(typeId))
+                    {
+                        sql += $" where Client.TypeId ={typeId}";
+                    }
+                    sql += " Order by Client.[RankNum]";
+                    return conn.Query<TClient>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetClientError.txt", info);
+                return null;
+            }
+        }
         public static bool AlterSupplierInfo(TSupplier supplier)
         {
             try
@@ -91,6 +119,29 @@ from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
                 return false;
             }
         }
+        public static bool AlterClientInfo(TClient client)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"UPDATE Client SET 
+                    [CompanyName]=@CompanyName,[PinyinCode]=@PinyinCode,[ContactName]=@ContactName,
+                    [Area]=@Area,[Address]=@Address,[WebSite]=@WebSite,[Tel]=@Tel,
+                    [Email]=@Email,[TypeId]=@TypeId,[RankNum]=@RankNum 
+                     WHERE [AutoId]=@AutoId ";
+
+                    conn.Execute(sql, client);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("ClientAlterError.txt", info);
+                return false;
+            }
+        }
         public static bool InsertSupplierInfo(TSupplier supplier)
         {
             try
@@ -111,7 +162,26 @@ from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
                 return false;
             }
         }
-
+        public static bool InsertClientInfo(TClient client)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = "insert into " +
+                        "Client([CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[RankNum]) " +
+                        "Values(@CompanyName,@PinyinCode,@ContactName,@Area,@Address,@WebSite,@Tel,@Email,@TypeId,@RankNum)";
+                    conn.Execute(sql, client);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("ClientAlterError.txt", info);
+                return false;
+            }
+        }
         /// <summary>
         /// 根据用户名获取用户数据
         /// </summary>
@@ -314,6 +384,24 @@ from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
             }
 
         }
+        public static int DeleteClientInfo(List<TClient> clients)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"delete from Client Where AutoId=@AutoId";
+                    return conn.Execute(sql, clients);
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("DeleteClientInfoError.txt", info);
+                return 0;
+            }
+
+        }
         public static List<TLoginUser> DataRowToLoginUser(List<DataRow> dataRows)
         {
             ModelHandlerA.ModelHandler<TLoginUser> modelHandler = new ModelHandlerA.ModelHandler<TLoginUser>();
@@ -353,6 +441,16 @@ from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId";
                                 Where CompanyName like '%'+@KeyWord+'%'
                                 OR PinyinCode like '%'+@KeyWord+'%'";
                 return conn.Query<TSupplier>(sql,new { KeyWord = keyWord}).ToList();
+            }
+        }
+        public static List<TClient> GetClientByName(string keyWord)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"select * from Client(nolock) 
+                                Where CompanyName like '%'+@KeyWord+'%'
+                                OR PinyinCode like '%'+@KeyWord+'%'";
+                return conn.Query<TClient>(sql, new { KeyWord = keyWord }).ToList();
             }
         }
         public static List<TLvInfo> GetLvInfos(int lv)

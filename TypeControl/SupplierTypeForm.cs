@@ -14,7 +14,7 @@ namespace 仓库管理系统
     public partial class SupplierTypeForm : TypeControlForm
     {
         private SupplierForm supplierForm;
-
+        ModelHandlerA.ModelHandler<TSupplierType> modelHandler = new ModelHandlerA.ModelHandler<TSupplierType>();
         public SupplierTypeForm()
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace 仓库管理系统
             TSupplierType supplierType= TypeControlAction.SetSupplierType(typeNameTxt.Text, typeRankTxt.Text);
             if (supplierType != null)
             {
-                bool result=TypeControlQuery.InserSupplierTypeInfo(supplierType);
+                bool result=TypeControlQuery.InsertSupplierTypeInfo(supplierType);
                 MessageBox.Show(result ? "插入成功" : "插入失败");
                 FlashForm();
             }
@@ -87,7 +87,7 @@ namespace 仓库管理系统
             if (dr != null)
             {
                 
-                ModelHandlerA.ModelHandler<TSupplierType> modelHandler = new ModelHandlerA.ModelHandler<TSupplierType>();
+                
                 TSupplierType supplierType = modelHandler.FillModel(dr);
                 if(idLab.Text== supplierType.AutoId.ToString()|| alterBtn.Visible==false)
                 {
@@ -103,7 +103,6 @@ namespace 仓库管理系统
         {
             TypeControlAction.UpdateDataGridViewRankValue(dataGridView1);
             DataTable dt = MDIAction.DataGridViewToDataTable(dataGridView1);
-            ModelHandlerA.ModelHandler<TSupplierType> modelHandler = new ModelHandlerA.ModelHandler<TSupplierType>();
             List<TSupplierType> supplierTypes = modelHandler.FillModel(dt);
             bool result = TypeControlQuery.UpdateSupplierTypesInfo(supplierTypes);
             MessageBox.Show(result ? "更新成功" : "更新失败");

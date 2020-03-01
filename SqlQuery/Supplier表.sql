@@ -1,4 +1,4 @@
-﻿--(未最终确定，还未执行)
+﻿
 create table Supplier(
 AutoId int primary key identity(1,1),
 CompanyName nvarchar(50) not null,

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 仓库管理系统.Template;
+using System.Threading;
 
 namespace 仓库管理系统
 {
@@ -40,9 +41,9 @@ namespace 仓库管理系统
             var multi = new MultiThreadWork();
             multi.DoMultiWork((s) =>
             {
-                for (int i = 0; i < suppliers.Count; i++)
+                for (int i = 0; i < s.Count; i++)
                 {
-                    ManageSupplier1 manageSupplier1 = new ManageSupplier1(suppliers[i], dataGridView, treeView);
+                    ManageSupplier1 manageSupplier1 = new ManageSupplier1(s[i], dataGridView, treeView);
                     manageSupplier1.StartPosition = FormStartPosition.CenterScreen;
                     manageSupplier1.Text = "供应商导入检查窗口";
                     SetShowInputForm(manageSupplier1,fatherForm);
@@ -52,10 +53,39 @@ namespace 仓库管理系统
                         {
                             break;
                         }
-
+                        Thread.Sleep(200);
+                    }
+                } 
+            }, suppliers);
+        }
+        /// <summary>
+        /// 客户导入
+        /// </summary>
+        /// <param name="suppliers"></param>
+        /// <param name="fatherForm"></param>
+        /// <param name="dataGridView"></param>
+        /// <param name="treeView"></param>
+        public static void InputClient(List<TClient> clients, Form fatherForm, DataGridView dataGridView, TreeView treeView)
+        {
+            var multi = new MultiThreadWork();
+            multi.DoMultiWork((c) =>
+            {
+                for (int i = 0; i < c.Count; i++)
+                {
+                    ManageClient1 manageClient1 = new ManageClient1(c[i], dataGridView, treeView);
+                    manageClient1.StartPosition = FormStartPosition.CenterScreen;
+                    manageClient1.Text = "客户导入检查窗口";
+                    SetShowInputForm(manageClient1, fatherForm);
+                    while (true)
+                    {
+                        if (manageClient1.IsDisposed)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(200);
                     }
                 }
-            }, suppliers);
+            }, clients);
         }
     }
 }

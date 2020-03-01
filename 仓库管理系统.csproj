@@ -103,6 +103,30 @@
     <Compile Include="Action\Encryption.cs" />
     <Compile Include="Action\TypeControlAction.cs" />
     <Compile Include="Action\TypeControlQuery.cs" />
+    <Compile Include="ClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientForm.Designer.cs">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageClient1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageClient1.Designer.cs">
+      <DependentUpon>ManageClient1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManage\ManageClient2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataManage\ManageClient2.Designer.cs">
+      <DependentUpon>ManageClient2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TypeControl\ClientTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TypeControl\ClientTypeForm.Designer.cs">
+      <DependentUpon>ClientTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompanyInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +163,7 @@
     <Compile Include="SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Template\TClientType.cs" />
     <Compile Include="TypeControl\TypeControlForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +244,18 @@
     <Compile Include="WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ClientForm.resx">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageClient1.resx">
+      <DependentUpon>ManageClient1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataManage\ManageClient2.resx">
+      <DependentUpon>ManageClient2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TypeControl\ClientTypeForm.resx">
+      <DependentUpon>ClientTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompanyInfo.resx">
       <DependentUpon>CompanyInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,7 +330,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -310,6 +349,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WMS.mdf</DependentUpon>
     </Content>
+    <Content Include="SqlQuery\ClientType表.sql" />
     <Content Include="SqlQuery\Client表.sql" />
     <Content Include="SqlQuery\GoodsType表.sql" />
     <Content Include="SqlQuery\Goods表.sql" />

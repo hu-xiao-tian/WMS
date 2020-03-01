@@ -84,5 +84,17 @@ namespace 仓库管理系统
             SupplierTypeForm supplierTypeForm = new SupplierTypeForm();
             supplierTypeForm.Show();
         }
+
+        private void 客户资料ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientForm clientForm = new ClientForm();
+            drawTabControl.Add_TabPage("客户资料", clientForm);
+        }
+
+        private void 客户类型ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientTypeForm clientTypeForm = new ClientTypeForm();
+            clientTypeForm.Show();
+        }
     }
 }

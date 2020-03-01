@@ -61,7 +61,24 @@ namespace 仓库管理系统
             }
             return dataGridView;
         }
-
+        /// <summary>
+        /// 绑定客户视图
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="list"></param>
+        public static DataGridView SetClientDataGridView(DataGridView dataGridView, List<TClient> clients)
+        {
+            ModelHandlerA.ModelHandler<TClient> modelHandler = new ModelHandlerA.ModelHandler<TClient>();
+            DataTable dt = modelHandler.FillDataTable(clients);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "客户编号", "客户名", "拼音码", "联系人", "地区", "地址", "官网", "电话", "邮箱", "类型id", "类型名称", "排序" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
         /// <summary>
         /// 绑定用户数据视图
         /// </summary>
@@ -103,7 +120,23 @@ namespace 仓库管理系统
                 return null;
             }
         }
-
+        public static List<TClient> ExcelToClientOBJ(string openPath)
+        {
+            try
+            {
+                DataTable dt = ExcelHelper.GetDataTable(openPath, 1);
+                ModelHandlerA.ModelHandler<TClient> modelHandler = new ModelHandlerA.ModelHandler<TClient>();
+                List<TClient> clients = modelHandler.FillModel(dt);
+                return clients;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("导入失败");
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InputExcelError.txt", info);
+                return null;
+            }
+        }
         /// <summary>
         /// 修改用户权限
         /// 只能控制低于自己的权限
@@ -473,6 +506,17 @@ namespace 仓库管理系统
                 suppliers.Add(supplier);
             }
             return suppliers;
+        }
+        public static List<TClient> DataRowToClient(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TClient> modelHandler = new ModelHandlerA.ModelHandler<TClient>();
+            List<TClient> clients = new List<TClient>();
+            foreach (var dataRow in dataRows)
+            {
+                TClient client = modelHandler.FillModel(dataRow);
+                clients.Add(client);
+            }
+            return clients;
         }
     }
 }
