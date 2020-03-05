@@ -58,6 +58,7 @@
             // 
             this.userPasswordTxt.Location = new System.Drawing.Point(204, 169);
             this.userPasswordTxt.Name = "userPasswordTxt";
+            this.userPasswordTxt.PasswordChar = '*';
             this.userPasswordTxt.Size = new System.Drawing.Size(186, 21);
             this.userPasswordTxt.TabIndex = 2;
             // 
@@ -101,6 +102,7 @@
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.loginBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 352);

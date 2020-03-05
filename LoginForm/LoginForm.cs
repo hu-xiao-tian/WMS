@@ -42,6 +42,7 @@ namespace 仓库管理系统
                     MessageBox.Show($"{user.UserName}登录成功");
                     WMSMainForm mainForm = new WMSMainForm(user);
                     mainForm.Show();
+                    this.Hide();
                 }
 
             }

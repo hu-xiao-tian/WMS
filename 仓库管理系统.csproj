@@ -103,22 +103,22 @@
     <Compile Include="Action\Encryption.cs" />
     <Compile Include="Action\TypeControlAction.cs" />
     <Compile Include="Action\TypeControlQuery.cs" />
-    <Compile Include="GoodsCountForm.cs">
+    <Compile Include="MainForm\GoodsCountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GoodsCountForm.Designer.cs">
+    <Compile Include="MainForm\GoodsCountForm.Designer.cs">
       <DependentUpon>GoodsCountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GoodsForm.cs">
+    <Compile Include="MainForm\GoodsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GoodsForm.Designer.cs">
+    <Compile Include="MainForm\GoodsForm.Designer.cs">
       <DependentUpon>GoodsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InWarehouseForm.cs">
+    <Compile Include="MainForm\InWarehouseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InWarehouseForm.Designer.cs">
+    <Compile Include="MainForm\InWarehouseForm.Designer.cs">
       <DependentUpon>InWarehouseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm\GoodsTemplateForm.cs">
@@ -145,22 +145,22 @@
     <Compile Include="DataManage\ManageClient2.Designer.cs">
       <DependentUpon>ManageClient2.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageGoods2.cs">
+    <Compile Include="DataManage\ManageGoods2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageGoods2.Designer.cs">
+    <Compile Include="DataManage\ManageGoods2.Designer.cs">
       <DependentUpon>ManageGoods2.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageGoods3.cs">
+    <Compile Include="DataManage\ManageGoods3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageGoods3.Designer.cs">
+    <Compile Include="DataManage\ManageGoods3.Designer.cs">
       <DependentUpon>ManageGoods3.cs</DependentUpon>
     </Compile>
-    <Compile Include="OutWarehouseForm.cs">
+    <Compile Include="MainForm\OutWarehouseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OutWarehouseForm.Designer.cs">
+    <Compile Include="MainForm\OutWarehouseForm.Designer.cs">
       <DependentUpon>OutWarehouseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Template\TGoodsCount.cs" />
@@ -171,16 +171,16 @@
     <Compile Include="TypeControl\GoodsTypeForm.Designer.cs">
       <DependentUpon>GoodsTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageShowForm.cs">
+    <Compile Include="MainForm\ImageShowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageShowForm.Designer.cs">
+    <Compile Include="MainForm\ImageShowForm.Designer.cs">
       <DependentUpon>ImageShowForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageGoods1.cs">
+    <Compile Include="DataManage\ManageGoods1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageGoods1.Designer.cs">
+    <Compile Include="DataManage\ManageGoods1.Designer.cs">
       <DependentUpon>ManageGoods1.cs</DependentUpon>
     </Compile>
     <Compile Include="DataManage\ManageGoodsTemplate1.cs">
@@ -318,19 +318,19 @@
     <Compile Include="MainForm\WorkerForm.Designer.cs">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WStatisticsForm.cs">
+    <Compile Include="MainForm\WStatisticsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WStatisticsForm.Designer.cs">
+    <Compile Include="MainForm\WStatisticsForm.Designer.cs">
       <DependentUpon>WStatisticsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GoodsCountForm.resx">
+    <EmbeddedResource Include="MainForm\GoodsCountForm.resx">
       <DependentUpon>GoodsCountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GoodsForm.resx">
+    <EmbeddedResource Include="MainForm\GoodsForm.resx">
       <DependentUpon>GoodsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InWarehouseForm.resx">
+    <EmbeddedResource Include="MainForm\InWarehouseForm.resx">
       <DependentUpon>InWarehouseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\ClientForm.resx">
@@ -345,22 +345,22 @@
     <EmbeddedResource Include="MainForm\GoodsTemplateForm.resx">
       <DependentUpon>GoodsTemplateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageGoods2.resx">
+    <EmbeddedResource Include="DataManage\ManageGoods2.resx">
       <DependentUpon>ManageGoods2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageGoods3.resx">
+    <EmbeddedResource Include="DataManage\ManageGoods3.resx">
       <DependentUpon>ManageGoods3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OutWarehouseForm.resx">
+    <EmbeddedResource Include="MainForm\OutWarehouseForm.resx">
       <DependentUpon>OutWarehouseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TypeControl\GoodsTypeForm.resx">
       <DependentUpon>GoodsTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageShowForm.resx">
+    <EmbeddedResource Include="MainForm\ImageShowForm.resx">
       <DependentUpon>ImageShowForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageGoods1.resx">
+    <EmbeddedResource Include="DataManage\ManageGoods1.resx">
       <DependentUpon>ManageGoods1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataManage\ManageGoodsTemplate1.resx">
@@ -432,7 +432,7 @@
     <EmbeddedResource Include="MainForm\WorkerForm.resx">
       <DependentUpon>WorkerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WStatisticsForm.resx">
+    <EmbeddedResource Include="MainForm\WStatisticsForm.resx">
       <DependentUpon>WStatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">

@@ -168,5 +168,10 @@ namespace 仓库管理系统
             WStatisticsForm statisticsForm = new WStatisticsForm();
             drawTabControl.Add_TabPage("统计报表", statisticsForm);
         }
+
+        private void WMSMainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
