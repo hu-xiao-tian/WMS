@@ -12,12 +12,17 @@ namespace 仓库管理系统.Template
     class TGoodsType
     {
         /// <summary>
-        /// id
+        /// 自增id
         /// </summary>
-        public int Id { get; set; }
+        public int AutoId { get; set; }
         /// <summary>
-        /// 类型
+        /// 类型名称
         /// </summary>
-        public string Type { get; set; }
+        public string Name { get; set; }
+        /// <summary>
+        /// 排序码
+        /// </summary>
+        public int RankNum { get; set; }
+
     }
 }

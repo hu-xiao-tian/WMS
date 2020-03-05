@@ -95,7 +95,33 @@ namespace 仓库管理系统
             }
             return null;
         }
+        public static TGoodsType SetGoodsType(string typeName, string typeRank, int autoId = -1)
+        {
+            int count = TypeControlQuery.TypeNameCheck(typeName, "GoodsType", autoId);
+            if (count > 0)
+            {
+                MessageBox.Show($"{typeName}类型已存在");
+            }
+            else if (!RegexCheck.IsInterger(typeRank))
+            {
+                MessageBox.Show("排序码只能为整数");
+            }
+            else
+            {
+                TGoodsType goodsType = new TGoodsType()
+                {
+                    Name = typeName,
+                    RankNum = Convert.ToInt32(typeRank)
 
+                };
+                if (autoId > 0)
+                {
+                    goodsType.AutoId = autoId;
+                }
+                return goodsType;
+            }
+            return null;
+        }
         public static void ChangeTypeBtnClick(ToolStripLabel typeNameLab = null, ToolStripTextBox typeNameTxt = null, ToolStripLabel typeRankLab = null, ToolStripTextBox typeRankTxt = null, ToolStripButton btn1 = null, ToolStripButton btn2 = null, ToolStripButton btn3 = null)
         {
             if (btn1.Visible == true && btn2.Visible == false)
@@ -142,7 +168,17 @@ namespace 仓库管理系统
             }
             return clientTypes;
         }
-
+        public static List<TGoodsType> DataRowToGoodsType(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TGoodsType> modelHandler = new ModelHandlerA.ModelHandler<TGoodsType>();
+            List<TGoodsType> goodsTypes = new List<TGoodsType>();
+            foreach (var dataRow in dataRows)
+            {
+                TGoodsType goodsType = modelHandler.FillModel(dataRow);
+                goodsTypes.Add(goodsType);
+            }
+            return goodsTypes;
+        }
         public static void ShowLabTxtBtn(ToolStripLabel typeNameLab, ToolStripTextBox typeNameTxt, ToolStripLabel typeRankLab, ToolStripTextBox typeRankTxt, ToolStripButton btn1 = null, ToolStripButton btn2 = null)
         {
             typeNameLab.Visible = true;
@@ -188,6 +224,27 @@ namespace 仓库管理系统
             {
                 btn2.Visible = false;
             }
+        }
+        /// <summary>
+        /// 设置货物类型视图
+        /// </summary>
+        /// <param name="dataGridView">视图对象</param>
+        /// <param name="clientTypes">实体对象列表</param>
+        /// <returns></returns>
+        public static DataGridView SetClientTypeDataGridView(DataGridView dataGridView, List<TGoodsType> goodsTypes)
+        {
+            ModelHandlerA.ModelHandler<TGoodsType> modelHandler = new ModelHandlerA.ModelHandler<TGoodsType>();
+            DataTable dt = modelHandler.FillDataTable(goodsTypes);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "类型编号", "类型名称", "类型排序" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderCell.Value = colText[i];
+            }
+            dataGridView.Columns[0].ReadOnly = true;
+            dataGridView.Columns[1].ReadOnly = true;
+            return dataGridView;
         }
         /// <summary>
         /// 设置客户类型视图
@@ -293,6 +350,25 @@ namespace 仓库管理系统
                 TreeNode cNode = new TreeNode();
                 cNode.Name = clientInfo.AutoId.ToString();
                 cNode.Text = clientInfo.Name;
+                treeNodes.Add(cNode);
+            }
+            TreeNode treeRoot = new TreeNode("全部", treeNodes.ToArray());
+            treeView.Nodes.Clear();
+            treeView.Nodes.Add(treeRoot);
+            treeView.ExpandAll();
+        }
+        /// <summary>
+        /// 初始化货物类型树视图
+        /// </summary>
+        /// <param name="tree"></param>
+        public static void InitGoodsTypeTree(TreeView treeView, List<TGoodsType> goodsTypes)
+        {
+            List<TreeNode> treeNodes = new List<TreeNode>();
+            foreach (var goodsInfo in goodsTypes)
+            {
+                TreeNode cNode = new TreeNode();
+                cNode.Name = goodsInfo.AutoId.ToString();
+                cNode.Text = goodsInfo.Name;
                 treeNodes.Add(cNode);
             }
             TreeNode treeRoot = new TreeNode("全部", treeNodes.ToArray());

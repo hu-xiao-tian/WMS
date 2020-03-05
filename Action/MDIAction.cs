@@ -12,6 +12,8 @@ using System.IO;
 using System.Threading;
 using 仓库管理系统.Template;
 using System.Data;
+using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace 仓库管理系统
 {
@@ -23,6 +25,21 @@ namespace 仓库管理系统
             {
                 dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
             }
+        }
+
+        /// <summary>
+        /// 初始化仓库列表框
+        /// </summary>
+        /// <param name="wIdComboBox"></param>
+        public static void InitWIdComboBox(ComboBox wIdComboBox)
+        {
+            List<TWarehouse> warehouses = new List<TWarehouse>();
+            warehouses = MDIQuery.GetUsingWarehouseInfo();
+            foreach(var warehouse in warehouses)
+            {
+                wIdComboBox.Items.Add(warehouse.Id);
+            }
+            wIdComboBox.SelectedIndex = 0;
         }
         /// <summary>
         /// 初始化用户树
@@ -82,6 +99,8 @@ namespace 仓库管理系统
             }
             return dataGridView;
         }
+        
+
         /// <summary>
         /// 绑定用户数据视图
         /// </summary>
@@ -106,12 +125,94 @@ namespace 仓库管理系统
             }
             return dataGridView;
         }
-
+        /// <summary>
+        /// 绑定商品模板视图
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="list"></param>
+        public static DataGridView SetGoodsTemplateDataGridView(DataGridView dataGridView, List<TGoodsTemplate> goodsTemplates)
+        {
+            ModelHandlerA.ModelHandler<TGoodsTemplate> modelHandler = new ModelHandlerA.ModelHandler<TGoodsTemplate>();
+            DataTable dt = modelHandler.FillDataTable(goodsTemplates);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "商品编号", "商品名称", "拼音码","条形码", "图片", "类型Id", "类型名称", "供货商Id", "供货商名称","备注"};
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+        public static DataGridView SetGoodsDataGridView(DataGridView dataGridView, List<TGoods> goods)
+        {
+            ModelHandlerA.ModelHandler<TGoods> modelHandler = new ModelHandlerA.ModelHandler<TGoods>();
+            DataTable dt = modelHandler.FillDataTable(goods);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "商品编号", "商品名称", "拼音码", "条形码", "图片", "生产日期", "有效期", "收购价格", "预售价", "类型id", "类型名称", "供货商Id", "供货商名称", "仓库Id", "仓库名称", "备注" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+        public static DataGridView SetInWarehouseGridView(DataGridView dataGridView, List<TInWarehouse> inWarehouses)
+        {
+            ModelHandlerA.ModelHandler<TInWarehouse> modelHandler = new ModelHandlerA.ModelHandler<TInWarehouse>();
+            DataTable dt = modelHandler.FillDataTable(inWarehouses);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "编号", "商品名称", "拼音码", "条形码", "生产日期", "供货商", "类型", "仓库Id","收购价格", "类型", "数量","时间"};
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+        public static DataGridView SetOutWarehouseGridView(DataGridView dataGridView, List<TOutWarehouse> outWarehouses)
+        {
+            ModelHandlerA.ModelHandler<TOutWarehouse> modelHandler = new ModelHandlerA.ModelHandler<TOutWarehouse>();
+            DataTable dt = modelHandler.FillDataTable(outWarehouses);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "编号", "商品名称", "拼音码", "条形码", "生产日期", "供货商","客户", "类型", "仓库Id", "收购价格","出售价格", "类型","时间" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+        public static DataGridView SetGoodsCountGridView(DataGridView dataGridView, List<TGoodsCount> goodsCounts)
+        {
+            ModelHandlerA.ModelHandler<TGoodsCount> modelHandler = new ModelHandlerA.ModelHandler<TGoodsCount>();
+            DataTable dt = modelHandler.FillDataTable(goodsCounts);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "商品名称", "拼音码", "条形码", "生产日期", "有效期", "剩余数量" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
+        public static DataGridView SetWStatisticsGridView(DataGridView dataGridView, List<TWStatistics> statistics)
+        {
+            ModelHandlerA.ModelHandler<TWStatistics> modelHandler = new ModelHandlerA.ModelHandler<TWStatistics>();
+            DataTable dt = modelHandler.FillDataTable(statistics);
+            dataGridView.DataSource = dt;
+            dataGridView.ColumnHeadersVisible = true;
+            string[] colText = { "编号", "购入总价", "销售总价", "损坏总价", "净利润", "日期编号" };
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                dataGridView.Columns[i].HeaderText = colText[i];
+            }
+            return dataGridView;
+        }
         public static List<TSupplier> ExcelToSupplierOBJ(string openPath)
         {
             try
             {
-                DataTable dt = ExcelHelper.GetDataTable(openPath, 1);
+                DataTable dt = ExcelHelper.GetDataTable(openPath, 0);
                 ModelHandlerA.ModelHandler<TSupplier> modelHandler = new ModelHandlerA.ModelHandler<TSupplier>();
                 List<TSupplier> suppliers = modelHandler.FillModel(dt);
                 return suppliers;
@@ -127,10 +228,44 @@ namespace 仓库管理系统
         {
             try
             {
-                DataTable dt = ExcelHelper.GetDataTable(openPath, 1);
+                DataTable dt = ExcelHelper.GetDataTable(openPath, 0);
                 ModelHandlerA.ModelHandler<TClient> modelHandler = new ModelHandlerA.ModelHandler<TClient>();
                 List<TClient> clients = modelHandler.FillModel(dt);
                 return clients;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("导入失败");
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InputExcelError.txt", info);
+                return null;
+            }
+        }
+        public static List<TGoodsTemplate> ExcelToGoodsTemplateOBJ(string openPath)
+        {
+            try
+            {
+                DataTable dt = ExcelHelper.GetDataTable(openPath,0);
+                ModelHandlerA.ModelHandler<TGoodsTemplate> modelHandler = new ModelHandlerA.ModelHandler<TGoodsTemplate>();
+                List<TGoodsTemplate> goodsTemplates = modelHandler.FillModel(dt);
+                return goodsTemplates;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("导入失败");
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InputExcelError.txt", info);
+                return null;
+            }
+        }
+        public static List<TGoods> ExcelToGoodsOBJ(string openPath)
+        {
+            try
+            {
+                DataTable dt = ExcelHelper.GetDataTable(openPath, 0);
+                ModelHandlerA.ModelHandler<TGoods> modelHandler = new ModelHandlerA.ModelHandler<TGoods>();
+                List<TGoods> goods = modelHandler.FillModel(dt);
+                return goods;
             }
             catch (Exception ex)
             {
@@ -425,6 +560,28 @@ namespace 仓库管理系统
             }
             return clients;
         }
+        public static List<TGoodsTemplate> DataRowToGoodsTemplate(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TGoodsTemplate> modelHandler = new ModelHandlerA.ModelHandler<TGoodsTemplate>();
+            List<TGoodsTemplate> goodsTemplates = new List<TGoodsTemplate>();
+            foreach (var dataRow in dataRows)
+            {
+                TGoodsTemplate goodsTemplate = modelHandler.FillModel(dataRow);
+                goodsTemplates.Add(goodsTemplate);
+            }
+            return goodsTemplates;
+        }
+        public static List<TGoods> DataRowToGoods(List<DataRow> dataRows)
+        {
+            ModelHandlerA.ModelHandler<TGoods> modelHandler = new ModelHandlerA.ModelHandler<TGoods>();
+            List<TGoods> goods = new List<TGoods>();
+            foreach (var dataRow in dataRows)
+            {
+                TGoods good = modelHandler.FillModel(dataRow);
+                goods.Add(good);
+            }
+            return goods;
+        }
         public static bool CheckIsAllowDelSupplierType(List<TSupplierType> supplierTypes)
         {
             bool isAllow = true;
@@ -444,9 +601,9 @@ namespace 仓库管理系统
         {
             bool isAllow = true;
             List<int> types = new List<int>();
-            foreach (var supplierType in clientTypes)
+            foreach (var clientType in clientTypes)
             {
-                types.Add(supplierType.AutoId);
+                types.Add(clientType.AutoId);
             }
             int count = MDIQuery.GetCountInfoByTypeId(types, "Client");
             if (count > 0)
@@ -454,6 +611,81 @@ namespace 仓库管理系统
                 isAllow = false;
             }
             return isAllow;
+        }
+        public static bool CheckIsAllowDelGoodsType(List<TGoodsType> goodsTypes)
+        {
+            bool isAllow = true;
+            List<int> types = new List<int>();
+            foreach (var goodType in goodsTypes)
+            {
+                types.Add(goodType.AutoId);
+            }
+            int count = MDIQuery.GetCountInfoByTypeId(types, "GoodsTemplate","Tid");
+            if (count > 0)
+            {
+                isAllow = false;
+                return isAllow;
+            }
+            count = MDIQuery.GetCountInfoByTypeId(types, "Goods", "Tid");
+            if (count > 0)
+            {
+                isAllow = false;
+                return isAllow;
+            }
+            return isAllow;
+        }
+
+        public static bool CheckIsAllowDelSupplier(List<TSupplier> suppliers)
+        {
+            bool isAllow = true;
+            List<int> types = new List<int>();
+            foreach (var supplier in suppliers)
+            {
+                types.Add(supplier.AutoId);
+            }
+            int count = MDIQuery.GetCountInfoByTypeId(types, "GoodsTemplate", "Sid");
+            if (count > 0)
+            {
+                isAllow = false;
+                return isAllow;
+            }
+            count = MDIQuery.GetCountInfoByTypeId(types, "Goods", "Sid");
+            if (count > 0)
+            {
+                isAllow = false;
+                return isAllow;
+            }
+            return isAllow;
+        }
+        public static bool CheckIsAllowDelWarehouses(List<TWarehouse> warehouses)
+        {
+            bool isAllow = true;
+            List<string> ids = new List<string>();
+            foreach (var warehouse in warehouses)
+            {
+                ids.Add(warehouse.Id);
+            }
+            int count = MDIQuery.GetCountInfoByWId(ids, "Goods","WId");
+            if (count > 0)
+            {
+                isAllow = false;
+            }
+            return isAllow;
+        }
+        [DllImport("user32")]
+        public static extern int SetParent(int hWndChild, int hWndNewParent);
+        /// <summary>
+        /// 初始化图片展示窗体
+        /// </summary>
+        /// <param name="hWndChild">父窗体</param>
+        /// <param name="hWndNewParent">子窗体（引用传递）</param>
+        /// <returns></returns>
+        public static void InitImageShowForm(Form fatherForm, ref ImageShowForm imageShowForm, string imageName)
+        {
+            imageShowForm = new ImageShowForm(imageName);
+            imageShowForm.Show();
+            SetParent((int)imageShowForm.Handle, (int)fatherForm.Handle);
+            imageShowForm.Location = new Point(fatherForm.Width - imageShowForm.Width - 20, fatherForm.Height - imageShowForm.Height - 50);
         }
     }
 }

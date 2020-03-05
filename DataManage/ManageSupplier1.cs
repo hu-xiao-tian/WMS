@@ -121,7 +121,7 @@ namespace 仓库管理系统
             }
             else
             {
-                MessageBox.Show("商品类型id不可为空");
+                MessageBox.Show("供货商类型id不可为空");
                 return null;
             }
             if (string.IsNullOrEmpty(typeNameTxt.Text.Trim()))

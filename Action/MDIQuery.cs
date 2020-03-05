@@ -41,6 +41,54 @@ namespace 仓库管理系统
 
         }
         /// <summary>
+        /// 获取指定名称供应商数据
+        /// </summary>
+        /// <returns></returns>
+        public static TSupplier GetSupplierByCompanyName(string name)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select Supplier.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Supplier.[RankNum] 
+from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId
+where Supplier.CompanyName =@CompanyName";
+                    sql += " Order by Supplier.[RankNum]";
+                    return conn.Query<TSupplier>(sql,new { CompanyName =name}).ToList().FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetSuppliersError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取指定id供应商数据
+        /// </summary>
+        /// <returns></returns>
+        public static TSupplier GetSupplierById(string id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select Supplier.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Supplier.[RankNum] 
+from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId
+where Supplier.AutoId ={id}";
+                    sql += " Order by Supplier.[RankNum]";
+                    return conn.Query<TSupplier>(sql).ToList().FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetSuppliersError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
         /// 获取供应商数据
         /// </summary>
         /// <returns></returns>
@@ -96,6 +144,219 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
                 return null;
             }
         }
+        /// <summary>
+        /// 获取商品模板数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TGoodsTemplate> GetGoodsTemplate(string typeId = null)
+        {
+            try
+            {
+                List<TGoodsTemplate> clients = new List<TGoodsTemplate>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select GoodsTemplate.[AutoId],GoodsTemplate.[Name],GoodsTemplate.[PinyinCode],[BarCode],[ImageName], 
+GoodsType.[AutoId] as TId,GoodsType.[Name] as TName,
+Supplier.[AutoId] as SId,Supplier.[CompanyName] as SName
+from GoodsTemplate inner join GoodsType on GoodsTemplate.TId = GoodsType.AutoId
+inner join Supplier on GoodsTemplate.SId = Supplier.AutoId";
+                    if (!string.IsNullOrEmpty(typeId))
+                    {
+                        sql += $" where GoodsTemplate.TId ={typeId}";
+                    }
+                    sql += " Order by GoodsTemplate.[AutoId]";
+                    return conn.Query<TGoodsTemplate>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetGoodsTemplateError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取商品数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TGoods> GetGoods(string typeId = null)
+        {
+            try
+            {
+                List<TGoods> clients = new List<TGoods>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select Goods.[AutoId],Goods.[Name],Goods.[PinyinCode],[BarCode],[ImageName], 
+[ProducedDate],[EffectiveTime],[InPrice],[OutPrice],
+GoodsType.[AutoId] as TId,GoodsType.[Name] as TName,
+Supplier.[AutoId] as SId,Supplier.[CompanyName] as SName,
+Warehouse.[Id] as WId,Warehouse.[Name] as WName
+from Goods inner join GoodsType on Goods.TId = GoodsType.AutoId
+inner join Supplier on Goods.SId = Supplier.AutoId
+inner join Warehouse on Goods.WId = Warehouse.Id";
+                    if (!string.IsNullOrEmpty(typeId))
+                    {
+                        sql += $" where Goods.TId ={typeId}";
+                    }
+                    sql += " Order by Goods.[AutoId]";
+                    return conn.Query<TGoods>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetGoodsError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+         /// 获取入库数据
+         /// </summary>
+         /// <returns></returns>
+        public static List<TInWarehouse> GetInWarehouse(DateTime startTime, DateTime endTime,string keyWord=null)
+        {
+            try
+            {
+                List<TGoods> clients = new List<TGoods>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"
+SELECT [AutoId],[Name],[PinyinCode],[BarCode],[ProducedDate],[SName],[TName],[WId],[InPrice],[InType],[InCount],[InTime]
+FROM InWarehouse WHERE [InTime]>'{startTime}' AND [InTime]<'{endTime}' 
+";
+                    if (!string.IsNullOrEmpty(keyWord))
+                    {
+                        sql+= @" AND 
+(Name like '%' + @KeyWord + '%'
+OR PinyinCode like '%' + @KeyWord + '%'
+OR BarCode like '%' + @KeyWord + '%')";
+                    }
+                    return conn.Query<TInWarehouse>(sql,new{KeyWord = keyWord }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetInWarehouseError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取出库数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TOutWarehouse> GetOutWarehouse(DateTime startTime, DateTime endTime, string keyWord = null)
+        {
+            try
+            {
+                List<TGoods> clients = new List<TGoods>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"
+SELECT [AutoId],[Name],[PinyinCode],[BarCode],[ProducedDate],[SName],[CName],[TName],[WId],[InPrice],[OutPrice],[OutType],[OutTime]
+FROM OutWarehouse WHERE [OutTime]>'{startTime}' AND [OutTime]<'{endTime}' 
+";
+                    if (!string.IsNullOrEmpty(keyWord))
+                    {
+                        sql += @" AND 
+(Name like '%' + @KeyWord + '%'
+OR PinyinCode like '%' + @KeyWord + '%'
+OR BarCode like '%' + @KeyWord + '%')";
+                    }
+                    return conn.Query<TOutWarehouse>(sql, new { KeyWord = keyWord }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetInWarehouseError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取商品库存数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TGoodsCount> GetGoodsCount(string lastDay, string keyWord = null)
+        {
+            try
+            {
+                List<TGoods> clients = new List<TGoods>();
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select [Name],[PinyinCode],[BarCode],[ProducedDate],[EffectiveTime],COUNT(BarCode) as Count from
+(select * from Goods 
+";
+                    if (!lastDay.Equals("全部"))
+                    {
+                        sql += $" WHERE [EffectiveTime]>0 AND datediff(day,GETDATE(),dateadd(day,[EffectiveTime],[ProducedDate]))<{lastDay}";
+                    }
+                    sql += ")as TempTB";
+                    if (!string.IsNullOrEmpty(keyWord))
+                    {
+                        sql += @" Where 
+(Name like '%' + @KeyWord + '%'
+OR PinyinCode like '%' + @KeyWord + '%'
+OR BarCode like '%' + @KeyWord + '%')";
+                    }
+                    sql += " group by Name,BarCode,PinyinCode,[ProducedDate],[EffectiveTime]";
+                    return conn.Query<TGoodsCount>(sql, new { KeyWord = keyWord }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetGoodsCountError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取统计报表数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TWStatistics> GetWStatisticsCount(string keyWord = null)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select [AutoId],[InPrice],[OutPrice],[BadPrice],[ProfitPrice],[DateCode] From WStatistics";
+                    if (!string.IsNullOrEmpty(keyWord))
+                    {
+                        sql += @" Where DateCode like '%' + @KeyWord + '%'";
+                    }
+                    return conn.Query<TWStatistics>(sql, new { KeyWord = keyWord }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetGoodsCountError.txt", info);
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取统计报表数据
+        /// </summary>
+        /// <returns></returns>
+        public static List<TWStatistics> GetWStatistics()
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"select [AutoId],[InPrice],[OutPrice],[BadPrice],[ProfitPrice],[DateCode]
+from WStatistics  Order by DateCode desc";
+                    return conn.Query<TWStatistics>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetWStatisticsError.txt", info);
+                return null;
+            }
+        }
         public static bool AlterSupplierInfo(TSupplier supplier)
         {
             try
@@ -116,6 +377,52 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             {
                 String info = $"异常:{ex}";
                 IOStream.WriteErrorLog("SupplierAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool AlterGoodsTemplateInfo(TGoodsTemplate goodsTemplate)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"UPDATE GoodsTemplate SET 
+                    [Name]=@Name,[PinyinCode]=@PinyinCode,[BarCode]=@BarCode,
+                    [ImageName]=@ImageName,[TId]=@TId,[SId]=@SId,[Description]=@Description
+                     WHERE [AutoId]=@AutoId ";
+
+                    conn.Execute(sql, goodsTemplate);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GoodsTemplateAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool AlterGoods(TGoods goods)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"UPDATE Goods SET 
+                    [Name]=@Name,[PinyinCode]=@PinyinCode,[BarCode]=@BarCode,
+                    [ImageName]=@ImageName,[TId]=@TId,[SId]=@SId,[ProducedDate]=@ProducedDate,
+                    [EffectiveTime]=@EffectiveTime,[InPrice]=@InPrice,[OutPrice]=@OutPrice,
+                    [WId]=@WId,[Description]=@Description
+                     WHERE [AutoId]=@AutoId ";
+
+                    conn.Execute(sql, goods);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GoodsAlterError.txt", info);
                 return false;
             }
         }
@@ -162,6 +469,46 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
                 return false;
             }
         }
+        public static bool InsertGoodsTemplateInfo(TGoodsTemplate goodsTemplate)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = "insert into " +
+                        "GoodsTemplate([Name],[PinyinCode],[BarCode],[ImageName],[TId],[SId],[Description]) " +
+                        "Values(@Name,@PinyinCode,@BarCode,@ImageName,@TId,@SId,@Description)";
+                    conn.Execute(sql, goodsTemplate);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("goodsTemplateAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool InsertGoodsInfo(TGoods goods)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"
+Insert into Goods( [Name],[PinyinCode],[BarCode],[ImageName],[TId],[SId],[ProducedDate],[EffectiveTime],[InPrice],[OutPrice],[WId],[Description])
+Values(@Name,@PinyinCode,@BarCode,@ImageName,@TId,@SId,@ProducedDate,@EffectiveTime,@InPrice,@OutPrice,@WId,@Description)";
+                    conn.Execute(sql, goods);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("goodsAlterError.txt", info);
+                return false;
+            }
+        }
         public static bool InsertClientInfo(TClient client)
         {
             try
@@ -179,6 +526,68 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             {
                 String info = $"异常:{ex}";
                 IOStream.WriteErrorLog("ClientAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool InsertInWarehouseInfo(TInWarehouse inWarehouse)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"insert into InWarehouse
+([Name],[PinyinCode],[BarCode],[ProducedDate],[SName],[TName],[WId],[InPrice],[InType],[InCount])
+values
+(@Name,@PinyinCode,@BarCode,@ProducedDate,@SName,@TName,@WId,@InPrice,@InType,@InCount)";
+                    conn.Execute(sql, inWarehouse);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("InWarehouseAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool InsertOutWarehouseInfo(TOutWarehouse outWarehouse)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"insert into OutWarehouse
+([Name],[PinyinCode],[BarCode],[ProducedDate],[SName],[CName],[TName],[WId],[InPrice],[OutPrice],[OutType])
+values
+(@Name,@PinyinCode,@BarCode,@ProducedDate,@SName,@CName,@TName,@WId,@InPrice,@OutPrice,@OutType)";
+                    conn.Execute(sql, outWarehouse);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("OutWarehouseAlterError.txt", info);
+                return false;
+            }
+        }
+        public static bool InsertWStatisticsInfo(TWStatistics statistics)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = @"
+Insert into WStatistics([InPrice],[OutPrice],[BadPrice],[ProfitPrice],[DateCode])
+Values(@InPrice,@OutPrice,@BadPrice,@ProfitPrice,@DateCode)";
+                    conn.Execute(sql, statistics);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("WStatisticsAlterError.txt", info);
                 return false;
             }
         }
@@ -269,6 +678,21 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
 
         }
         /// <summary>
+        /// 获取启用的仓库数据
+        /// </summary>
+        /// <param name="AutoId"></param>
+        /// <returns></returns>
+        public static List<TWarehouse> GetUsingWarehouseInfo()
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"select [AutoId],[Id],[Name],[Address],[Area],[Tel],[Contacts],[IsUse],[IsDefault],[Description] 
+                from Warehouse(nolock)  Where [IsUse] = 1
+                Order By IsDefault Desc";
+                return conn.Query<TWarehouse>(sql).ToList();
+            }
+        }
+        /// <summary>
         /// 获取仓库数据
         /// </summary>
         /// <returns></returns>
@@ -351,7 +775,27 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             }
 
         }
+        public static bool UpdateWStatisticsInfo(TWStatistics statistics)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $@"update WStatistics SET 
+                    InPrice=@InPrice, OutPrice=@OutPrice,BadPrice=@BadPrice,ProfitPrice=@ProfitPrice
+                    Where DateCode=@DateCode";
+                    conn.Execute(sql, statistics);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("WStatisticsAlterError.txt", info);
+                return false;
+            }
 
+        }
         public static int DeleteWarehouseInfo(List<TWarehouse> warehouses)
         {
             try
@@ -406,6 +850,42 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
             }
 
         }
+        public static int DeleteGoodsTemplateInfo(List<TGoodsTemplate> goodsTemplates)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"delete from GoodsTemplate Where AutoId=@AutoId";
+                    return conn.Execute(sql, goodsTemplates);
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("DeleteGoodsTemplateInfoError.txt", info);
+                return 0;
+            }
+
+        }
+        public static int DeleteGoods(List<TGoods> goods)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"delete from Goods Where AutoId=@AutoId";
+                    return conn.Execute(sql, goods);
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("DeleteGoodsInfoError.txt", info);
+                return 0;
+            }
+
+        }
         public static List<TLoginUser> DataRowToLoginUser(List<DataRow> dataRows)
         {
             ModelHandlerA.ModelHandler<TLoginUser> modelHandler = new ModelHandlerA.ModelHandler<TLoginUser>();
@@ -441,9 +921,11 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = @"select * from Supplier(nolock) 
+                string sql = @"select Supplier.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Supplier.[RankNum] 
+from Supplier inner join SupplierType on Supplier.TypeId = SupplierType.AutoId
                                 Where CompanyName like '%'+@KeyWord+'%'
-                                OR PinyinCode like '%'+@KeyWord+'%'";
+                                OR PinyinCode like '%'+@KeyWord+'%'
+Order by Supplier.[RankNum]";
                 return conn.Query<TSupplier>(sql,new { KeyWord = keyWord}).ToList();
             }
         }
@@ -451,10 +933,46 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
         {
             using (var conn = new SqlConnection(conStr))
             {
-                string sql = @"select * from Client(nolock) 
+                string sql = @"select Client.[AutoId],[CompanyName],[PinyinCode],[ContactName],[Area],[Address],[WebSite],[Tel],[Email],[TypeId],[Name] as TypeName,Client.[RankNum] 
+from Client inner join ClientType on Client.TypeId = ClientType.AutoId
                                 Where CompanyName like '%'+@KeyWord+'%'
-                                OR PinyinCode like '%'+@KeyWord+'%'";
+                                OR PinyinCode like '%'+@KeyWord+'%'
+Order by Client.[RankNum]";
                 return conn.Query<TClient>(sql, new { KeyWord = keyWord }).ToList();
+            }
+        }
+        public static List<TGoodsTemplate> GetGoodsTemplateByName(string keyWord)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"
+select GoodsTemplate.[AutoId],GoodsTemplate.[Name],GoodsTemplate.[PinyinCode],[BarCode],[ImageName], 
+GoodsType.[AutoId] as TId,GoodsType.[Name] as TName,
+Supplier.[AutoId] as SId,Supplier.[CompanyName] as SName
+from GoodsTemplate inner join GoodsType on GoodsTemplate.TId = GoodsType.AutoId
+inner join Supplier on GoodsTemplate.SId = Supplier.AutoId  
+Where [GoodsTemplate].Name like '%'+@KeyWord+'%'
+OR [GoodsTemplate].PinyinCode like '%'+@KeyWord+'%'
+OR [GoodsTemplate].BarCode like '%'+@KeyWord+'%'";
+                return conn.Query<TGoodsTemplate>(sql, new { KeyWord = keyWord }).ToList();
+            }
+        }
+        public static List<TGoods> GetGoodsByName(string keyWord)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                string sql = @"select Goods.[AutoId],Goods.[Name],Goods.[PinyinCode],[BarCode],[ImageName], 
+[ProducedDate],[EffectiveTime],[InPrice],[OutPrice],
+GoodsType.[AutoId] as TId,GoodsType.[Name] as TName,
+Supplier.[AutoId] as SId,Supplier.[CompanyName] as SName,
+Warehouse.[Id] as WId,Warehouse.[Name] as WName
+from Goods(nolock) inner join GoodsType on Goods.TId = GoodsType.AutoId
+inner join Supplier on Goods.SId = Supplier.AutoId
+inner join Warehouse on Goods.WId = Warehouse.Id
+Where [Goods].Name like '%'+@KeyWord+'%'
+OR [Goods].PinyinCode like '%'+@KeyWord+'%'
+OR [Goods].BarCode like '%'+@KeyWord+'%'";
+                return conn.Query<TGoods>(sql, new { KeyWord = keyWord }).ToList();
             }
         }
         public static List<TLvInfo> GetLvInfos(int lv)
@@ -494,14 +1012,31 @@ from Client inner join ClientType on Client.TypeId = ClientType.AutoId";
         /// <param name="types">类型ID列表</param>
         /// <param name="dbName">数据库名</param>
         /// <returns></returns>
-        public static int GetCountInfoByTypeId(List<int> types, string dbName)
+        public static int GetCountInfoByTypeId(List<int> types, string dbName,string colName= "TypeId")
         {
             try
             {
                 using (var conn = new SqlConnection(conStr))
                 {
-                    string sql = $"SELECT COUNT(*) FROM {dbName}(nolock) WHERE [TypeId] IN @Types";
+                    string sql = $"SELECT COUNT(*) FROM {dbName}(nolock) WHERE [{colName}] IN @Types";
                     return conn.ExecuteScalar<int>(sql,new {Types = types });
+                }
+            }
+            catch (Exception ex)
+            {
+                String info = $"异常:{ex}";
+                IOStream.WriteErrorLog("GetDBCountInfoError.txt", info);
+                return 1;
+            }
+        }
+        public static int GetCountInfoByWId(List<string> ids, string dbName, string colName)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(conStr))
+                {
+                    string sql = $"SELECT COUNT(*) FROM {dbName}(nolock) WHERE [{colName}] IN @Ids";
+                    return conn.ExecuteScalar<int>(sql, new { Ids = ids });
                 }
             }
             catch (Exception ex)

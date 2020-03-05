@@ -87,5 +87,65 @@ namespace 仓库管理系统
                 }
             }, clients);
         }
+        /// <summary>
+        /// 商品模板导入
+        /// </summary>
+        /// <param name="suppliers"></param>
+        /// <param name="fatherForm"></param>
+        /// <param name="dataGridView"></param>
+        /// <param name="treeView"></param>
+        public static void InputGoodsTemplate(List<TGoodsTemplate> goodsTemplates, Form fatherForm, DataGridView dataGridView, TreeView treeView)
+        {
+            var multi = new MultiThreadWork();
+            multi.DoMultiWork((g) =>
+            {
+                for (int i = 0; i < g.Count; i++)
+                {
+                    ManageGoodsTemplate1 manageGoodsTemplate1 = new ManageGoodsTemplate1(g[i], dataGridView, treeView);
+                    manageGoodsTemplate1.StartPosition = FormStartPosition.CenterScreen;
+                    manageGoodsTemplate1.Text = "商品模板导入检查窗口";
+
+                    SetShowInputForm(manageGoodsTemplate1, fatherForm);
+                    while (true)
+                    {
+                        if (manageGoodsTemplate1.IsDisposed)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(200);
+                    }
+                }
+            }, goodsTemplates);
+        }
+        /// <summary>
+        /// 商品导入
+        /// </summary>
+        /// <param name="suppliers"></param>
+        /// <param name="fatherForm"></param>
+        /// <param name="dataGridView"></param>
+        /// <param name="treeView"></param>
+        public static void InputGoods(List<TGoods> goods, Form fatherForm, DataGridView dataGridView, TreeView treeView)
+        {
+            var multi = new MultiThreadWork();
+            multi.DoMultiWork((g) =>
+            {
+                for (int i = 0; i < g.Count; i++)
+                {
+                    ManageGoods1 manageGoods = new ManageGoods1(g[i], dataGridView, treeView);
+                    manageGoods.StartPosition = FormStartPosition.CenterScreen;
+                    manageGoods.Text = "商品模板导入检查窗口";
+
+                    SetShowInputForm(manageGoods, fatherForm);
+                    while (true)
+                    {
+                        if (manageGoods.IsDisposed)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(200);
+                    }
+                }
+            }, goods);
+        }
     }
 }

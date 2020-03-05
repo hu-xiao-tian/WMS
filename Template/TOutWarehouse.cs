@@ -11,50 +11,54 @@ namespace 仓库管理系统.Template
         /// <summary>
         /// 出库id(自增，用于统计)
         /// </summary>
-        public int Id { get; set; }
+        public int AutoId { get; set; }
         /// <summary>
-        /// 货物表中自增id（主要用于区分具体货物个体）
+        /// 货物名字
         /// </summary>
-        public string Gid { get; set; }
+        public string Name { get; set; }
+        /// <summary>
+        /// 拼音码
+        /// </summary>
+        public string PinyinCode { get; set; }
         /// <summary>
         /// 货物id（条码）
         /// </summary>
         public string BarCode { get; set; }
         /// <summary>
-        /// 货物名字
+        /// 生产时间(日期编号)
         /// </summary>
-        public string GName { get; set; }
+        public string ProducedDate { get; set; }
         /// <summary>
-        /// 客户id
+        /// 供应商名字
         /// </summary>
-        public int CId { get; set; }
+        public string SName { get; set; }
         /// <summary>
-        /// 客户名字
+        /// 客户名
         /// </summary>
         public string CName { get; set; }
         /// <summary>
-        /// 仓库Id
-        /// </summary>
-        public int WId { get; set; }
-        /// <summary>
-        /// 仓库名
-        /// </summary>
-        public string WName { get; set; }
-        /// <summary>
         /// 货物类型
         /// </summary>
-        public string GType { get; set; }
+        public string TName { get; set; }
         /// <summary>
-        /// 出库数量
+        /// 仓库Id
         /// </summary>
-        public int OutCount { get; set; }
+        public string WId { get; set; }
+        /// <summary>
+        /// 购入单价
+        /// </summary>
+        public double InPrice { get; set; }
         /// <summary>
         /// 售出单价
         /// </summary>
         public double OutPrice { get; set; }
         /// <summary>
+        /// 出库类型
+        /// </summary>
+        public string OutType { get; set; }
+        /// <summary>
         /// 出库时间
         /// </summary>
-        public DateTime OutDate { get; set; }
+        public DateTime OutTime { get; set; }
     }
 }

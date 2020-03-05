@@ -1,5 +1,16 @@
-﻿--(未最终确定，还未执行)
+﻿
 create table GoodsType(
-Id int primary key identity(1,1),
-Type nvarchar(50) not null
+AutoId int primary key identity(1,1),
+Name nvarchar(50) not null,
+RankNum int not null
 )
+
+insert into GoodsType ([Name],[RankNum]) values ('食品',1) 
+insert into GoodsType ([Name],[RankNum]) values ('日用品',2) 
+
+select * from GoodsType
+
+--类型名称，作为赛选条件应该为不重复的
+ALTER TABLE GoodsType
+ADD
+CONSTRAINT Name_no_unique_constraint UNIQUE (Name)

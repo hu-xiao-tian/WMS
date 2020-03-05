@@ -88,6 +88,15 @@ namespace 仓库管理系统
                 e.Handled = true;
             }
         }
+        public static void CheckCellIsFloat(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '.' || e.KeyChar == 8)
+            {
+                e.Handled = false;
+                return;
+            }
+            e.Handled = true;
+        }
         /// <summary>
         /// 文本非空限长检测
         /// 返回值：布尔值
