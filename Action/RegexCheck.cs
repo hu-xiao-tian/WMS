@@ -99,12 +99,11 @@ namespace 仓库管理系统
         }
         /// <summary>
         /// 文本非空限长检测
-        /// 返回值：布尔值
         /// </summary>
         /// <param name="text">要检查的文本</param>
         /// <param name="lenth">限制的长度</param>
         /// <param name="property">检查的属性名称</param>
-        /// <returns></returns>
+        /// <returns>布尔</returns>
         public static bool TextCheck(string text, int lenth)
         {
             if (string.IsNullOrEmpty(text) || text.Length > lenth)
@@ -115,11 +114,10 @@ namespace 仓库管理系统
         }
         /// <summary>
         /// 文本限长检测
-        /// 返回值：布尔值
         /// </summary>
         /// <param name="text">要检查的文本</param>
         /// <param name="lenth">限制的长度</param>
-        /// <returns></returns>
+        /// <returns>布尔</returns>
         public static bool TextLengthCheck(string text, int lenth)
         {
             if (text.Length > lenth)

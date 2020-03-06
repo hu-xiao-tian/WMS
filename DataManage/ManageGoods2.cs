@@ -193,7 +193,7 @@ namespace 仓库管理系统
             bool result = false;
             if (goods != null&&goods.Count>0)
             {
-                MultiThreadWork multi = new MultiThreadWork(1);
+                MultiThreadWork multi = new MultiThreadWork(10);
                 multi.DoMultiWork((g) =>
                 {
                     for (int i = 0; i < g.Count; i++)

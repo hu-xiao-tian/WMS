@@ -57,7 +57,7 @@
             this.saveBtn.Location = new System.Drawing.Point(103, 362);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
-            this.saveBtn.TabIndex = 0;
+            this.saveBtn.TabIndex = 10;
             this.saveBtn.Text = "保存";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -67,7 +67,7 @@
             this.closeBtn.Location = new System.Drawing.Point(300, 362);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
-            this.closeBtn.TabIndex = 0;
+            this.closeBtn.TabIndex = 11;
             this.closeBtn.Text = "关闭";
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
@@ -86,7 +86,7 @@
             this.nameTxt.Location = new System.Drawing.Point(72, 13);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(393, 21);
-            this.nameTxt.TabIndex = 2;
+            this.nameTxt.TabIndex = 1;
             // 
             // label2
             // 
@@ -118,7 +118,7 @@
             this.provinceTxt.Location = new System.Drawing.Point(72, 91);
             this.provinceTxt.Name = "provinceTxt";
             this.provinceTxt.Size = new System.Drawing.Size(114, 21);
-            this.provinceTxt.TabIndex = 2;
+            this.provinceTxt.TabIndex = 3;
             // 
             // label4
             // 
@@ -134,7 +134,7 @@
             this.cityTxt.Location = new System.Drawing.Point(72, 130);
             this.cityTxt.Name = "cityTxt";
             this.cityTxt.Size = new System.Drawing.Size(114, 21);
-            this.cityTxt.TabIndex = 2;
+            this.cityTxt.TabIndex = 4;
             // 
             // label5
             // 
@@ -150,7 +150,7 @@
             this.townTxt.Location = new System.Drawing.Point(72, 169);
             this.townTxt.Name = "townTxt";
             this.townTxt.Size = new System.Drawing.Size(393, 21);
-            this.townTxt.TabIndex = 2;
+            this.townTxt.TabIndex = 5;
             // 
             // label6
             // 
@@ -166,7 +166,7 @@
             this.telTxt.Location = new System.Drawing.Point(72, 208);
             this.telTxt.Name = "telTxt";
             this.telTxt.Size = new System.Drawing.Size(393, 21);
-            this.telTxt.TabIndex = 2;
+            this.telTxt.TabIndex = 6;
             // 
             // label7
             // 
@@ -182,7 +182,7 @@
             this.addrTxt.Location = new System.Drawing.Point(72, 247);
             this.addrTxt.Name = "addrTxt";
             this.addrTxt.Size = new System.Drawing.Size(393, 21);
-            this.addrTxt.TabIndex = 2;
+            this.addrTxt.TabIndex = 7;
             // 
             // pictureBox
             // 
@@ -199,7 +199,7 @@
             this.uploadBtn.Location = new System.Drawing.Point(390, 54);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(75, 23);
-            this.uploadBtn.TabIndex = 0;
+            this.uploadBtn.TabIndex = 8;
             this.uploadBtn.Text = "上传";
             this.uploadBtn.UseVisualStyleBackColor = true;
             this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
@@ -209,7 +209,7 @@
             this.deleteBtn.Location = new System.Drawing.Point(390, 124);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(75, 23);
-            this.deleteBtn.TabIndex = 0;
+            this.deleteBtn.TabIndex = 9;
             this.deleteBtn.Text = "删除";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);

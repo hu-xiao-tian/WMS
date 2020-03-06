@@ -42,7 +42,7 @@
             this.loginBtn.Location = new System.Drawing.Point(204, 249);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(75, 23);
-            this.loginBtn.TabIndex = 0;
+            this.loginBtn.TabIndex = 3;
             this.loginBtn.Text = "登录";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.Button1_Click);
@@ -67,7 +67,7 @@
             this.registerBtn.Location = new System.Drawing.Point(315, 248);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(75, 23);
-            this.registerBtn.TabIndex = 3;
+            this.registerBtn.TabIndex = 4;
             this.registerBtn.Text = "注册";
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);

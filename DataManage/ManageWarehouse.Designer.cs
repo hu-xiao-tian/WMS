@@ -72,15 +72,18 @@
             // closeBtn
             // 
             this.closeBtn.Location = new System.Drawing.Point(296, 367);
+            this.closeBtn.TabIndex = 12;
             // 
             // saveAlterBtn
             // 
             this.saveAlterBtn.Location = new System.Drawing.Point(205, 367);
+            this.saveAlterBtn.TabIndex = 11;
             this.saveAlterBtn.Click += new System.EventHandler(this.saveAlterBtn_Click);
             // 
             // saveAddBtn
             // 
             this.saveAddBtn.Location = new System.Drawing.Point(124, 367);
+            this.saveAddBtn.TabIndex = 10;
             this.saveAddBtn.Click += new System.EventHandler(this.saveAddBtn_Click);
             // 
             // label1
@@ -113,7 +116,7 @@
             this.nameTxt.Location = new System.Drawing.Point(349, 25);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(130, 21);
-            this.nameTxt.TabIndex = 1;
+            this.nameTxt.TabIndex = 2;
             // 
             // label3
             // 
@@ -129,7 +132,7 @@
             this.addrTxt.Location = new System.Drawing.Point(123, 74);
             this.addrTxt.Name = "addrTxt";
             this.addrTxt.Size = new System.Drawing.Size(356, 21);
-            this.addrTxt.TabIndex = 1;
+            this.addrTxt.TabIndex = 3;
             // 
             // label4
             // 
@@ -154,14 +157,14 @@
             this.telTxt.Location = new System.Drawing.Point(123, 120);
             this.telTxt.Name = "telTxt";
             this.telTxt.Size = new System.Drawing.Size(136, 21);
-            this.telTxt.TabIndex = 1;
+            this.telTxt.TabIndex = 4;
             // 
             // contactsTxt
             // 
             this.contactsTxt.Location = new System.Drawing.Point(349, 120);
             this.contactsTxt.Name = "contactsTxt";
             this.contactsTxt.Size = new System.Drawing.Size(130, 21);
-            this.contactsTxt.TabIndex = 1;
+            this.contactsTxt.TabIndex = 5;
             // 
             // label6
             // 
@@ -178,7 +181,7 @@
             this.descriptionTxt.Multiline = true;
             this.descriptionTxt.Name = "descriptionTxt";
             this.descriptionTxt.Size = new System.Drawing.Size(356, 63);
-            this.descriptionTxt.TabIndex = 1;
+            this.descriptionTxt.TabIndex = 7;
             // 
             // isUseCheckBox
             // 
@@ -186,7 +189,7 @@
             this.isUseCheckBox.Location = new System.Drawing.Point(123, 297);
             this.isUseCheckBox.Name = "isUseCheckBox";
             this.isUseCheckBox.Size = new System.Drawing.Size(156, 16);
-            this.isUseCheckBox.TabIndex = 2;
+            this.isUseCheckBox.TabIndex = 8;
             this.isUseCheckBox.Text = "停用后不会出现在单据中";
             this.isUseCheckBox.UseVisualStyleBackColor = true;
             this.isUseCheckBox.CheckedChanged += new System.EventHandler(this.isUseCheckBox_CheckedChanged);
@@ -197,7 +200,7 @@
             this.isDefaultCheckBox.Location = new System.Drawing.Point(312, 297);
             this.isDefaultCheckBox.Name = "isDefaultCheckBox";
             this.isDefaultCheckBox.Size = new System.Drawing.Size(48, 16);
-            this.isDefaultCheckBox.TabIndex = 2;
+            this.isDefaultCheckBox.TabIndex = 9;
             this.isDefaultCheckBox.Text = "默认";
             this.isDefaultCheckBox.UseVisualStyleBackColor = true;
             this.isDefaultCheckBox.CheckedChanged += new System.EventHandler(this.isDefaultCheckBox_CheckedChanged);
@@ -225,7 +228,7 @@
             this.areaTxt.Location = new System.Drawing.Point(123, 166);
             this.areaTxt.Name = "areaTxt";
             this.areaTxt.Size = new System.Drawing.Size(356, 21);
-            this.areaTxt.TabIndex = 1;
+            this.areaTxt.TabIndex = 6;
             // 
             // ManageWarehouse
             // 
@@ -237,7 +240,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

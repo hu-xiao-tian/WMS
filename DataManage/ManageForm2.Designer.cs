@@ -65,7 +65,7 @@
             this.upBtn.Location = new System.Drawing.Point(246, 18);
             this.upBtn.Name = "upBtn";
             this.upBtn.Size = new System.Drawing.Size(75, 36);
-            this.upBtn.TabIndex = 0;
+            this.upBtn.TabIndex = 14;
             this.upBtn.Text = "上条记录";
             this.upBtn.UseVisualStyleBackColor = true;
             this.upBtn.Click += new System.EventHandler(this.upBtn_Click);
@@ -75,7 +75,7 @@
             this.typeNameTxt.Location = new System.Drawing.Point(84, 253);
             this.typeNameTxt.Name = "typeNameTxt";
             this.typeNameTxt.Size = new System.Drawing.Size(361, 21);
-            this.typeNameTxt.TabIndex = 21;
+            this.typeNameTxt.TabIndex = 10;
             this.typeNameTxt.TextChanged += new System.EventHandler(this.typeNameTxt_TextChanged);
             // 
             // label11
@@ -92,7 +92,7 @@
             this.rankNumTxt.Location = new System.Drawing.Point(84, 280);
             this.rankNumTxt.Name = "rankNumTxt";
             this.rankNumTxt.Size = new System.Drawing.Size(361, 21);
-            this.rankNumTxt.TabIndex = 19;
+            this.rankNumTxt.TabIndex = 11;
             // 
             // label10
             // 
@@ -108,7 +108,7 @@
             this.typeIdTxt.Location = new System.Drawing.Point(84, 226);
             this.typeIdTxt.Name = "typeIdTxt";
             this.typeIdTxt.Size = new System.Drawing.Size(361, 21);
-            this.typeIdTxt.TabIndex = 17;
+            this.typeIdTxt.TabIndex = 9;
             this.typeIdTxt.TextChanged += new System.EventHandler(this.typeIdTxt_TextChanged);
             // 
             // label9
@@ -125,14 +125,14 @@
             this.emailTxt.Location = new System.Drawing.Point(84, 199);
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(361, 21);
-            this.emailTxt.TabIndex = 15;
+            this.emailTxt.TabIndex = 8;
             // 
             // saveBtn
             // 
             this.saveBtn.Location = new System.Drawing.Point(84, 18);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 36);
-            this.saveBtn.TabIndex = 0;
+            this.saveBtn.TabIndex = 12;
             this.saveBtn.Text = "保存新增";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -154,7 +154,7 @@
             this.downBtn.Location = new System.Drawing.Point(327, 18);
             this.downBtn.Name = "downBtn";
             this.downBtn.Size = new System.Drawing.Size(75, 36);
-            this.downBtn.TabIndex = 0;
+            this.downBtn.TabIndex = 15;
             this.downBtn.Text = "下条记录";
             this.downBtn.UseVisualStyleBackColor = true;
             this.downBtn.Click += new System.EventHandler(this.downBtn_Click);
@@ -164,7 +164,7 @@
             this.saveCloseBtn.Location = new System.Drawing.Point(165, 18);
             this.saveCloseBtn.Name = "saveCloseBtn";
             this.saveCloseBtn.Size = new System.Drawing.Size(75, 36);
-            this.saveCloseBtn.TabIndex = 0;
+            this.saveCloseBtn.TabIndex = 13;
             this.saveCloseBtn.Text = "保存关闭";
             this.saveCloseBtn.UseVisualStyleBackColor = true;
             this.saveCloseBtn.Click += new System.EventHandler(this.saveCloseBtn_Click);
@@ -183,14 +183,14 @@
             this.telTxt.Location = new System.Drawing.Point(84, 172);
             this.telTxt.Name = "telTxt";
             this.telTxt.Size = new System.Drawing.Size(361, 21);
-            this.telTxt.TabIndex = 13;
+            this.telTxt.TabIndex = 7;
             // 
             // webSideTxt
             // 
             this.webSideTxt.Location = new System.Drawing.Point(84, 145);
             this.webSideTxt.Name = "webSideTxt";
             this.webSideTxt.Size = new System.Drawing.Size(361, 21);
-            this.webSideTxt.TabIndex = 11;
+            this.webSideTxt.TabIndex = 6;
             // 
             // label6
             // 
@@ -245,7 +245,7 @@
             this.addressTxt.Location = new System.Drawing.Point(84, 118);
             this.addressTxt.Name = "addressTxt";
             this.addressTxt.Size = new System.Drawing.Size(361, 21);
-            this.addressTxt.TabIndex = 9;
+            this.addressTxt.TabIndex = 5;
             // 
             // label5
             // 
@@ -261,7 +261,7 @@
             this.areaTxt.Location = new System.Drawing.Point(84, 91);
             this.areaTxt.Name = "areaTxt";
             this.areaTxt.Size = new System.Drawing.Size(361, 21);
-            this.areaTxt.TabIndex = 7;
+            this.areaTxt.TabIndex = 4;
             // 
             // label4
             // 
@@ -277,7 +277,7 @@
             this.contactNameTxt.Location = new System.Drawing.Point(84, 64);
             this.contactNameTxt.Name = "contactNameTxt";
             this.contactNameTxt.Size = new System.Drawing.Size(361, 21);
-            this.contactNameTxt.TabIndex = 5;
+            this.contactNameTxt.TabIndex = 3;
             // 
             // label3
             // 
@@ -293,7 +293,7 @@
             this.pinyinCodeTxt.Location = new System.Drawing.Point(84, 37);
             this.pinyinCodeTxt.Name = "pinyinCodeTxt";
             this.pinyinCodeTxt.Size = new System.Drawing.Size(361, 21);
-            this.pinyinCodeTxt.TabIndex = 3;
+            this.pinyinCodeTxt.TabIndex = 2;
             // 
             // label2
             // 
