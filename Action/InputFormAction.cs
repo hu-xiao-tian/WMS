@@ -133,7 +133,7 @@ namespace 仓库管理系统
                 {
                     ManageGoods1 manageGoods = new ManageGoods1(g[i], dataGridView, treeView);
                     manageGoods.StartPosition = FormStartPosition.CenterScreen;
-                    manageGoods.Text = "商品模板导入检查窗口";
+                    manageGoods.Text = "商品导入检查窗口";
 
                     SetShowInputForm(manageGoods, fatherForm);
                     while (true)

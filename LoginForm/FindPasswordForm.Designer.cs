@@ -89,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 90);
+            this.label2.Location = new System.Drawing.Point(107, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
@@ -98,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 144);
+            this.label3.Location = new System.Drawing.Point(107, 144);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 4;
@@ -134,38 +134,38 @@
             // userPWLab
             // 
             this.userPWLab.AutoSize = true;
+            this.userPWLab.ForeColor = System.Drawing.Color.OrangeRed;
             this.userPWLab.Location = new System.Drawing.Point(166, 159);
             this.userPWLab.Name = "userPWLab";
-            this.userPWLab.Size = new System.Drawing.Size(41, 12);
+            this.userPWLab.Size = new System.Drawing.Size(0, 12);
             this.userPWLab.TabIndex = 8;
-            this.userPWLab.Text = "label2";
             // 
             // emailLab
             // 
             this.emailLab.AutoSize = true;
+            this.emailLab.ForeColor = System.Drawing.Color.OrangeRed;
             this.emailLab.Location = new System.Drawing.Point(166, 60);
             this.emailLab.Name = "emailLab";
-            this.emailLab.Size = new System.Drawing.Size(41, 12);
+            this.emailLab.Size = new System.Drawing.Size(0, 12);
             this.emailLab.TabIndex = 9;
-            this.emailLab.Text = "label2";
             // 
             // codeLab
             // 
             this.codeLab.AutoSize = true;
+            this.codeLab.ForeColor = System.Drawing.Color.OrangeRed;
             this.codeLab.Location = new System.Drawing.Point(166, 105);
             this.codeLab.Name = "codeLab";
-            this.codeLab.Size = new System.Drawing.Size(41, 12);
+            this.codeLab.Size = new System.Drawing.Size(0, 12);
             this.codeLab.TabIndex = 8;
-            this.codeLab.Text = "label2";
             // 
             // userPWLab2
             // 
             this.userPWLab2.AutoSize = true;
+            this.userPWLab2.ForeColor = System.Drawing.Color.OrangeRed;
             this.userPWLab2.Location = new System.Drawing.Point(166, 210);
             this.userPWLab2.Name = "userPWLab2";
-            this.userPWLab2.Size = new System.Drawing.Size(41, 12);
+            this.userPWLab2.Size = new System.Drawing.Size(0, 12);
             this.userPWLab2.TabIndex = 8;
-            this.userPWLab2.Text = "label2";
             // 
             // FindPasswordForm
             // 
